@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Your Name - Portfolio">
+        <title>Your Name | Portfolio</title>
+        <script>
+            (function () {
+                var t = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', t);
+            })();
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="nav-content">
+                    <a href="#" class="logo">Carlos Roldan</a>
+                    <ul class="nav-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section id="hero">
+                <div class="container">
+                    <h1>Hi, I'm <span class="highlight">Carlos Roldan</span></h1>
+                    <p class="subtitle">I build things for the web</p>
+                    <p class="description">I'm a software developer specializing in building exceptional digital experiences.</p>
+                </div>
+            </section>
+
+            <section id="about">
+                <div class="container">
+                    <h2>About Me</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>I'm a passionate developer with experience in building web applications. I love creating solutions that are both functional and beautiful.</p>
+                            <p>Here are a few technologies I've been working with recently:</p>
+                            <ul class="skills-list">
+                                <li>JavaScript (ES6+)</li>
+                                <li>React</li>
+                                <li>Node.js</li>
+                                <li>TypeScript</li>
+                                <li>HTML & CSS</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <div class="container">
+                    <h2>Featured Projects</h2>
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-title-wrapper">
+                              
+                                <h3>ARGos Path Planning - MARS</h3>
+                                <svg class="project-icon" width="12" height="12" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            </div>
+                            <p class="project-date">January – May 2024</p>
+                            <ul class="project-details">
+                                <li>Developed obstacle-avoidance and pathfinding algorithms (A*, Dijkstra) in a robotics simulation using ARGos</li>
+                                <li>Focused on efficient route planning and inter-robot communication in a virtual environment</li>
+                            </ul>
+                        </div>
+                        <!-- Additional project cards can go here -->
+                        <div class="project-card">
+                            <div class="project-title-wrapper">
+                                <h3>Pi-hole Network Project – Raspberry Pi</h3>
+                                <svg class="project-icon" width="12" height="12" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            </div>
+                            <p class="project-date">February 2025</p>
+                            <ul class="project-details">
+                                <li>Deployed Pi-hole for DNS-level ad blocking and traffic analysis on a local network.</li>
+                                <li>Configured secure network services for improved privacy and performance.</li>
+                                <li>Gained practical experience in DNS filtering, traffic analysis, and local network administration.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="projects.html" class="cta-button">See More</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <div class="container">
+                    <h2>Get In Touch</h2>
+                    <p>I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+                    <a href="mailto:your.email@example.com" class="cta-button">Say Hello</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>Designed & Built by Your Name</p>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html> 
