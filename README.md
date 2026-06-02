@@ -3,7 +3,7 @@ portfolio website
 
 ## 📄 License & Copyright
 
-Copyright © 2026 [Your Name]. All rights reserved.
+Copyright © 2026 Carlos Roldan. All rights reserved.
 
 The source code in this repository is **not** open-source. I am sharing the code for transparency and as part of my professional portfolio to demonstrate my technical skills to recruiters and peers. 
 
