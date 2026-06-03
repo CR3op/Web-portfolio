@@ -101,9 +101,25 @@ function updateThemeIcons(isLight, sunIcon, moonIcon) {
     }
 }
 
+// Collapsible skills list — show the first few, reveal the rest on demand
+function initializeSkillsToggle() {
+    const toggle = document.getElementById('skills-toggle');
+    const list = document.getElementById('skills-list');
+    if (!toggle || !list) return;
+
+    const label = toggle.querySelector('.skills-toggle-text');
+
+    toggle.addEventListener('click', () => {
+        const expanded = list.classList.toggle('expanded');
+        toggle.setAttribute('aria-expanded', String(expanded));
+        if (label) label.textContent = expanded ? 'Show less' : 'Show more';
+    });
+}
+
 // Initialize theme when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initializeTheme();
+    initializeSkillsToggle();
     document.querySelectorAll('section').forEach(section => {
         section.classList.add('animate-on-scroll');
     });

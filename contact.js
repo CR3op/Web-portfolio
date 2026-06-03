@@ -69,6 +69,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const charCount = document.getElementById('char-count');
     const messageBox = document.getElementById('form-message');
 
+    // --- Work-in-progress popup (form isn't live yet) ---
+    const wipOverlay = document.getElementById('wip-overlay');
+    const wipClose = document.getElementById('wip-close');
+
+    function openWipModal() {
+        if (!wipOverlay) return;
+        wipOverlay.hidden = false;
+        document.body.style.overflow = 'hidden';
+        if (wipClose) wipClose.focus();
+    }
+
+    function closeWipModal() {
+        if (!wipOverlay) return;
+        wipOverlay.hidden = true;
+        document.body.style.overflow = '';
+    }
+
+    if (wipClose) wipClose.addEventListener('click', closeWipModal);
+    if (wipOverlay) {
+        wipOverlay.addEventListener('click', (e) => {
+            if (e.target === wipOverlay) closeWipModal();
+        });
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && wipOverlay && !wipOverlay.hidden) closeWipModal();
+    });
+
     // --- Generate a random math captcha each load (fallback) ---
     const a = Math.floor(Math.random() * 8) + 1;
     const b = Math.floor(Math.random() * 8) + 1;
@@ -122,6 +149,16 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        // Delivery is still a work in progress, so the moment someone
+        // tries to send we show a popup explaining the message won't go
+        // through. The anti-spam checks below are kept for when the form
+        // goes live — re-enable them by removing the early return.
+        openWipModal();
+        return;
+    });
+
+    // eslint-disable-next-line no-unused-vars
+    function validateAndSend(e) {
         const name = nameInput.value.trim();
         const email = emailInput.value.trim();
         const message = messageInput.value.trim();
@@ -180,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // All checks passed — deliver the message.
         localStorage.setItem('contactLastSent', String(Date.now()));
         deliverMessage({ name, email, message, turnstileToken });
-    });
+    }
 
     function deliverMessage({ name, email, message, turnstileToken }) {
         const submitBtn = form.querySelector('.submit-btn');

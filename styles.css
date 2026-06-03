@@ -222,6 +222,59 @@ header {
     border: 1px solid var(--border-color);
 }
 
+/* Collapsible skills: hide the extras until the user expands the list */
+.skill-hidden {
+    display: none;
+}
+
+.skills-list.expanded .skill-hidden {
+    display: block;
+}
+
+/* "Show more / Show less" toggle button */
+.skills-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    padding: 0.55rem 1.25rem;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-color);
+    border-radius: 0;
+    clip-path: var(--p5-cut-chip);
+    cursor: pointer;
+    font-family: var(--p5-font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.25s var(--p5-snap),
+                color 0.25s var(--p5-snap),
+                transform 0.25s var(--p5-snap);
+}
+
+.skills-toggle:hover {
+    background-color: var(--accent-color);
+    color: var(--p5-white);
+    transform: skewX(-8deg) translateY(-2px);
+}
+
+.skills-toggle:active {
+    transform: translateY(0);
+}
+
+.skills-toggle .skills-toggle-icon {
+    font-size: 1.15rem;
+    line-height: 1;
+    transition: transform 0.3s var(--p5-snap);
+}
+
+/* Rotate the "+" into an "x"-like cue when expanded */
+.skills-toggle[aria-expanded="true"] .skills-toggle-icon {
+    transform: rotate(45deg);
+}
+
 /* Projects Section */
 #projects {
     padding: clamp(2.5rem, 8vw, 4rem) 0;
