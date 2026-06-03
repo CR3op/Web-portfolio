@@ -132,7 +132,7 @@
 
             .projects-header h1 {
                 font-family: var(--p5-font-display);
-                font-size: 3rem;
+                font-size: clamp(2rem, 7vw, 3rem);
                 text-transform: uppercase;
                 letter-spacing: 0.06em;
                 color: var(--text-primary);
@@ -141,7 +141,7 @@
 
             .projects-header .subtitle {
                 color: var(--text-secondary);
-                font-size: 1.15rem;
+                font-size: clamp(1rem, 3vw, 1.15rem);
                 margin: 0;
             }
 
@@ -163,9 +163,6 @@
             @media (max-width: 640px) {
                 .projects-header {
                     padding: 6rem 1rem 2rem;
-                }
-                .projects-header h1 {
-                    font-size: 2rem;
                 }
                 .header-actions {
                     top: 1rem;

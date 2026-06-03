@@ -75,19 +75,32 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
     background-color: var(--bg-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
+    /* The angled P5 drop-shadows extend past elements; clip any horizontal bleed */
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Container */
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 clamp(1rem, 4vw, 2rem);
 }
 
 /* Navigation */
@@ -145,15 +158,16 @@ header {
 
 /* Hero Section */
 #hero {
-    padding: 8rem 0 4rem;
+    padding: clamp(5rem, 12vw, 8rem) 0 clamp(2.5rem, 8vw, 4rem);
     text-align: center;
     background-color: var(--bg-primary);
 }
 
 #hero h1 {
-    font-size: 3rem;
+    font-size: clamp(2rem, 8vw, 3rem);
     font-weight: 700;
     margin-bottom: 1rem;
+    line-height: 1.15;
 }
 
 .highlight {
@@ -161,25 +175,25 @@ header {
 }
 
 .subtitle {
-    font-size: 1.5rem;
+    font-size: clamp(1.15rem, 4vw, 1.5rem);
     color: var(--text-secondary);
     margin-bottom: 1rem;
 }
 
 .description {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 3vw, 1.25rem);
     max-width: 600px;
     margin: 0 auto;
 }
 
 /* About Section */
 #about {
-    padding: 4rem 0;
+    padding: clamp(2.5rem, 8vw, 4rem) 0;
     background-color: var(--bg-secondary);
 }
 
 #about h2 {
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 6vw, 2rem);
     margin-bottom: 2rem;
     text-align: center;
 }
@@ -210,31 +224,31 @@ header {
 
 /* Projects Section */
 #projects {
-    padding: 4rem 0;
+    padding: clamp(2.5rem, 8vw, 4rem) 0;
     background-color: var(--bg-primary);
 }
 
 #projects h2 {
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 6vw, 2rem);
     margin-bottom: 2rem;
     text-align: center;
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: clamp(1.25rem, 4vw, 2rem);
 }
 
 /* Contact Section */
 #contact {
-    padding: 4rem 0;
+    padding: clamp(2.5rem, 8vw, 4rem) 0;
     background-color: var(--bg-secondary);
     text-align: center;
 }
 
 #contact h2 {
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 6vw, 2rem);
     margin-bottom: 1rem;
 }
 
@@ -788,8 +802,8 @@ section {
 /* Projects Grid Layout */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: clamp(1.25rem, 4vw, 1.5rem);
 }
 
 /* Title and Icon Alignment */
@@ -1110,4 +1124,71 @@ section {
 #about .about-content,
 #projects .projects-grid {
     text-align: left;
+}
+
+/* =================================================
+   RESPONSIVE REFINEMENTS — phones & tablets
+   ================================================= */
+
+/* Footer scales down on small screens */
+footer {
+    padding: clamp(1.5rem, 5vw, 2rem) 0;
+}
+
+/* CTA buttons stay comfortable, full-friendly tap targets on touch */
+.cta-button {
+    padding: clamp(0.8rem, 3vw, 1rem) clamp(1.4rem, 5vw, 2rem);
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+/* Tablet and below */
+@media (max-width: 768px) {
+    /* Lighter angular shadows so cards don't feel heavy on smaller screens */
+    .project-card {
+        box-shadow: 4px 4px 0 var(--p5-red-dark);
+    }
+    .cta-button {
+        box-shadow: 4px 4px 0 var(--p5-black);
+    }
+    [data-theme="light"] .cta-button {
+        box-shadow: 4px 4px 0 var(--p5-red);
+    }
+
+    /* Disable transform-based hover lifts on touch to avoid sticky states */
+    @media (hover: none) {
+        .project-card:hover,
+        .cta-button:hover,
+        .skills-list li:hover {
+            transform: none;
+        }
+    }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+    /* Shrink the decorative red ticks beside section headings so they
+       don't crowd the title on narrow screens */
+    #about h2::before,
+    #projects h2::before,
+    #contact h2::before,
+    #about h2::after,
+    #projects h2::after,
+    #contact h2::after {
+        width: 16px;
+        height: 4px;
+    }
+    #about h2,
+    #projects h2,
+    #contact h2 {
+        padding: 0 0.75rem;
+    }
+
+    .project-card {
+        padding: 1.25rem;
+    }
+
+    /* Single-column skills already handled; tighten spacing */
+    .skills-list {
+        gap: 0.75rem;
+    }
 }
