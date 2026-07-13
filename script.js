@@ -1,13 +1,23 @@
 // Smooth scrolling for navigation links
+function getSectionScrollOffset() {
+    const section = document.querySelector('main section[id]');
+    if (!section) return 104;
+    const margin = parseFloat(getComputedStyle(section).scrollMarginTop);
+    return Number.isFinite(margin) ? margin : 104;
+}
+
+function scrollToSection(target) {
+    const offset = getSectionScrollOffset();
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+}
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            scrollToSection(target);
         }
     });
 });
@@ -18,10 +28,11 @@ const navLinks = document.querySelectorAll('.nav-links a');
 
 function highlightNavigation() {
     const scrollY = window.pageYOffset;
+    const scrollOffset = getSectionScrollOffset();
 
     sections.forEach(section => {
         const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
+        const sectionTop = section.offsetTop - scrollOffset;
         const sectionId = section.getAttribute('id');
         
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
