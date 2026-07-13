@@ -41,12 +41,142 @@
                 letter-spacing: 0.05em;
             }
 
-            .project-detail img {
+            .project-detail > img {
                 max-width: 100%;
                 height: auto;
                 border-radius: 0;
                 clip-path: var(--p5-cut-sm);
                 margin: 1rem 0;
+            }
+
+            /* Peek-a-boo project gallery (ARGoS) */
+            .project-gallery {
+                margin: 1.5rem 0 1rem;
+                position: relative;
+                --gallery-slide-width: 100%;
+                width: 100%;
+            }
+
+            .project-gallery-viewport {
+                overflow: hidden;
+                width: 100vw;
+                max-width: 100vw;
+                margin-left: calc(50% - 50vw);
+                padding: 1rem 0 0.5rem;
+                touch-action: pan-y;
+                cursor: grab;
+                user-select: none;
+                -webkit-user-select: none;
+            }
+
+            .project-gallery-viewport.is-dragging {
+                cursor: grabbing;
+                touch-action: none;
+            }
+
+            .project-gallery-track {
+                display: flex;
+                align-items: center;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                will-change: transform;
+                transition: transform 0.55s var(--p5-snap);
+            }
+
+            .project-gallery-track.is-dragging,
+            .project-gallery-track.is-dragging .project-gallery-slide {
+                transition: none;
+            }
+
+            .project-gallery-slide {
+                flex: 0 0 var(--gallery-slide-width);
+                width: var(--gallery-slide-width);
+                max-width: var(--gallery-slide-width);
+                padding: 0 0.5rem;
+                box-sizing: border-box;
+                transition: transform 0.55s var(--p5-snap),
+                            opacity 0.55s var(--p5-snap),
+                            filter 0.55s var(--p5-snap);
+                transform: scale(0.78);
+                opacity: 0.35;
+                filter: saturate(0.55) brightness(0.85);
+            }
+
+            .project-gallery-slide.is-active {
+                transform: scale(1);
+                opacity: 1;
+                filter: none;
+                z-index: 2;
+            }
+
+            .project-gallery-slide.is-prev,
+            .project-gallery-slide.is-next {
+                transform: scale(0.86);
+                opacity: 0.5;
+                filter: saturate(0.75) brightness(0.92);
+            }
+
+            .project-gallery-frame {
+                background: var(--bg-primary);
+                clip-path: var(--p5-cut-sm);
+                box-shadow: 5px 5px 0 var(--p5-gray);
+                transition: box-shadow 0.55s var(--p5-snap);
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .project-gallery-slide.is-active .project-gallery-frame {
+                box-shadow: 10px 10px 0 var(--p5-red-dark);
+            }
+
+            .project-gallery-slide.is-prev .project-gallery-frame,
+            .project-gallery-slide.is-next .project-gallery-frame {
+                box-shadow: 6px 6px 0 var(--p5-red-dark);
+            }
+
+            .project-gallery-slide img {
+                display: block;
+                max-width: 100%;
+                width: auto;
+                height: auto;
+                margin: 0;
+                clip-path: none;
+                border-radius: 0;
+                object-fit: contain;
+            }
+
+            .project-gallery-caption {
+                margin-top: 0.65rem;
+                font-family: var(--p5-font-display);
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                font-size: 0.78rem;
+                color: var(--text-secondary);
+                text-align: center;
+                opacity: 0;
+                transform: translateY(4px);
+                transition: opacity 0.4s var(--p5-snap),
+                            transform 0.4s var(--p5-snap);
+            }
+
+            .project-gallery-slide.is-active .project-gallery-caption {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .project-gallery-hint {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
             }
 
             .project-tags {
@@ -220,7 +350,27 @@
                         <span class="project-tag">Open-Sourced</span>
                         <span class="project-tag">Robotics Simulation</span>
                     </div>
-                    <img src="diffusion%20example.png" alt="ARGoS simulation showing foot-bot robots navigating around obstacles">
+                    <div class="project-gallery project-gallery--gesture" aria-roledescription="carousel" aria-label="ARGoS project screenshots">
+                        <p class="project-gallery-hint" id="argos-gallery-hint">
+                            Swipe, drag, or tap the left and right edges to browse screenshots. Arrow keys also work when focused.
+                        </p>
+                        <div class="project-gallery-viewport" aria-describedby="argos-gallery-hint">
+                            <ul class="project-gallery-track">
+                                <li class="project-gallery-slide is-active">
+                                    <div class="project-gallery-frame">
+                                        <img src="diffusion%20example.png" alt="ARGoS simulation showing foot-bot robots navigating around obstacles">
+                                    </div>
+                                    <p class="project-gallery-caption">Path planning — obstacle navigation</p>
+                                </li>
+                                <li class="project-gallery-slide">
+                                    <div class="project-gallery-frame">
+                                        <img src="flocking%20sample.png" alt="ARGoS simulation showing a robot swarm with cyan communication links demonstrating flocking behavior">
+                                    </div>
+                                    <p class="project-gallery-caption">Flocking — decentralized swarm coordination</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <p>
                         A path planning algorithm for the ARGos robotics simulator,
                         developed as part of the MARS Lab research project at the University of Texas at Rio Grande Valley.
@@ -284,5 +434,164 @@
         </footer>
 
         <script src="script.js"></script>
+        <script>
+            document.querySelectorAll('.project-gallery--gesture').forEach(function (gallery) {
+                var track = gallery.querySelector('.project-gallery-track');
+                var viewport = gallery.querySelector('.project-gallery-viewport');
+                var slides = Array.from(gallery.querySelectorAll('.project-gallery-slide'));
+                var activeIndex = slides.findIndex(function (slide) {
+                    return slide.classList.contains('is-active');
+                });
+                if (activeIndex < 0) activeIndex = 0;
+
+                var baseOffset = 0;
+                var dragOffset = 0;
+                var isDragging = false;
+                var hasMoved = false;
+                var startX = 0;
+                var activePointerId = null;
+                var dragThreshold = 8;
+                var snapRatio = 0.2;
+                var edgeTapRatio = 0.2;
+
+                function getCenterOffset(index) {
+                    var slide = slides[index];
+                    return (viewport.offsetWidth / 2) - (slide.offsetLeft + slide.offsetWidth / 2);
+                }
+
+                function applyTransform(offset, animate) {
+                    track.classList.toggle('is-dragging', !animate);
+                    viewport.classList.toggle('is-dragging', !animate);
+                    track.style.transform = 'translateX(' + offset + 'px)';
+                }
+
+                function updateClasses() {
+                    var total = slides.length;
+                    slides.forEach(function (slide, index) {
+                        slide.classList.remove('is-active', 'is-prev', 'is-next');
+                        slide.setAttribute('aria-hidden', index !== activeIndex ? 'true' : 'false');
+                        if (index === activeIndex) {
+                            slide.classList.add('is-active');
+                        } else if (index === (activeIndex - 1 + total) % total) {
+                            slide.classList.add('is-prev');
+                        } else if (index === (activeIndex + 1) % total) {
+                            slide.classList.add('is-next');
+                        }
+                    });
+                    gallery.setAttribute('aria-label',
+                        'ARGoS project screenshots, image ' + (activeIndex + 1) + ' of ' + slides.length);
+                }
+
+                function goTo(index, animate) {
+                    activeIndex = (index + slides.length) % slides.length;
+                    updateClasses();
+                    baseOffset = getCenterOffset(activeIndex);
+                    dragOffset = 0;
+                    applyTransform(baseOffset, animate);
+                }
+
+                function setSlideWidths() {
+                    gallery.style.setProperty('--gallery-slide-width', gallery.offsetWidth + 'px');
+                    baseOffset = getCenterOffset(activeIndex);
+                    dragOffset = 0;
+                    applyTransform(baseOffset, false);
+                }
+
+                function finishDrag(pointerX) {
+                    var snapThreshold = viewport.offsetWidth * snapRatio;
+
+                    if (hasMoved) {
+                        if (dragOffset < -snapThreshold) {
+                            goTo(activeIndex + 1, true);
+                        } else if (dragOffset > snapThreshold) {
+                            goTo(activeIndex - 1, true);
+                        } else {
+                            dragOffset = 0;
+                            applyTransform(baseOffset, true);
+                        }
+                        return;
+                    }
+
+                    var bounds = viewport.getBoundingClientRect();
+                    var relativeX = pointerX - bounds.left;
+                    var edgeWidth = bounds.width * edgeTapRatio;
+
+                    if (relativeX <= edgeWidth) {
+                        goTo(activeIndex - 1, true);
+                    } else if (relativeX >= bounds.width - edgeWidth) {
+                        goTo(activeIndex + 1, true);
+                    } else {
+                        dragOffset = 0;
+                        applyTransform(baseOffset, true);
+                    }
+                }
+
+                function onPointerDown(event) {
+                    if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+                    isDragging = true;
+                    hasMoved = false;
+                    startX = event.clientX;
+                    activePointerId = event.pointerId;
+                    dragOffset = 0;
+                    viewport.setPointerCapture(event.pointerId);
+                }
+
+                function onPointerMove(event) {
+                    if (!isDragging || event.pointerId !== activePointerId) return;
+
+                    dragOffset = event.clientX - startX;
+                    if (Math.abs(dragOffset) > dragThreshold) {
+                        hasMoved = true;
+                    }
+
+                    if (!hasMoved) return;
+
+                    if (event.cancelable) {
+                        event.preventDefault();
+                    }
+
+                    applyTransform(baseOffset + dragOffset, false);
+                }
+
+                function onPointerEnd(event) {
+                    if (!isDragging || event.pointerId !== activePointerId) return;
+
+                    isDragging = false;
+                    activePointerId = null;
+
+                    if (viewport.hasPointerCapture(event.pointerId)) {
+                        viewport.releasePointerCapture(event.pointerId);
+                    }
+
+                    finishDrag(event.clientX);
+                }
+
+                viewport.addEventListener('pointerdown', onPointerDown);
+                viewport.addEventListener('pointermove', onPointerMove);
+                viewport.addEventListener('pointerup', onPointerEnd);
+                viewport.addEventListener('pointercancel', onPointerEnd);
+
+                gallery.setAttribute('tabindex', '0');
+                gallery.addEventListener('keydown', function (event) {
+                    if (event.key === 'ArrowLeft') {
+                        event.preventDefault();
+                        goTo(activeIndex - 1, true);
+                    } else if (event.key === 'ArrowRight') {
+                        event.preventDefault();
+                        goTo(activeIndex + 1, true);
+                    }
+                });
+
+                window.addEventListener('resize', setSlideWidths);
+                gallery.querySelectorAll('img').forEach(function (img) {
+                    if (img.complete) return;
+                    img.addEventListener('load', setSlideWidths, { once: true });
+                });
+
+                updateClasses();
+                setSlideWidths();
+            });
+        </script>
     </body>
 </html>
