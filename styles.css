@@ -252,10 +252,11 @@ main section[id] {
 
 /* "Show more / Show less" toggle button */
 .skills-toggle {
-    display: inline-flex;
+    display: flex;
+    width: fit-content;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 1.25rem;
+    margin: 1.25rem auto 0;
     padding: 0.55rem 1.25rem;
     background-color: transparent;
     color: var(--text-primary);
@@ -402,6 +403,62 @@ main section[id] {
     font-size: 0.9rem;
     color: var(--text-primary);
     text-align: center;
+}
+
+/* Experience Section */
+#experience {
+    padding: clamp(2.5rem, 8vw, 4rem) 0;
+    background-color: var(--bg-secondary);
+}
+
+#experience h2 {
+    font-size: clamp(1.6rem, 6vw, 2rem);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.experience-grid {
+    display: grid;
+    /* Wider minimum than the project grid so four cards sit 2x2 on desktop */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+    gap: clamp(1.25rem, 4vw, 1.5rem);
+}
+
+/* Experience cards share the project card look; only the meta rows differ */
+.experience-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.35rem;
+}
+
+.experience-card h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+}
+
+.experience-company {
+    font-family: var(--p5-font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    margin-bottom: 0.25rem;
+}
+
+.experience-date {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.experience-details {
+    padding-left: 1rem;
+}
+
+.experience-details li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
 }
 
 /* Projects Section */
@@ -898,7 +955,8 @@ section {
 }
 
 /* Project Cards */
-.project-card {
+.project-card,
+.experience-card {
     background-color: var(--card-bg);
     border-radius: 8px;
     padding: 1.5rem;
@@ -910,17 +968,20 @@ section {
     text-decoration: none;
 }
 
-.project-card:hover {
+.project-card:hover,
+.experience-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     border-color: var(--accent-color);
 }
 
-.project-card:hover .project-title-wrapper h3 {
+.project-card:hover .project-title-wrapper h3,
+.experience-card:hover .experience-title-wrapper h3 {
     color: var(--text-secondary);
 }
 
-.project-card:hover .project-icon {
+.project-card:hover .project-icon,
+.experience-card:hover .project-icon {
     transform: translate(4px, -6px);
     color: var(--text-secondary);
 }
@@ -989,7 +1050,8 @@ section {
 }
 
 /* Animate icon on hover */
-.project-title-wrapper:hover .project-icon {
+.project-title-wrapper:hover .project-icon,
+.experience-title-wrapper:hover .project-icon {
     transform: translate(4px, -6px);
     color: var(--text-secondary);
 }
@@ -1025,6 +1087,7 @@ section {
 #hero h1,
 #about h2,
 #education h2,
+#experience h2,
 #projects h2,
 #contact h2 {
     font-family: var(--p5-font-display);
@@ -1150,8 +1213,9 @@ section {
     box-shadow: 10px 10px 0 var(--p5-black);
 }
 
-/* === Project cards: notched corners + red wash slide + stamp shadow === */
-.project-card {
+/* === Project & experience cards: notched corners + red wash slide + stamp shadow === */
+.project-card,
+.experience-card {
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -1164,7 +1228,8 @@ section {
         transform 0.3s var(--p5-snap),
         box-shadow 0.3s var(--p5-snap);
 }
-.project-card::before {
+.project-card::before,
+.experience-card::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -1173,28 +1238,37 @@ section {
     transition: transform 0.5s var(--p5-snap);
     z-index: -1;
 }
-.project-card:hover {
+.project-card:hover,
+.experience-card:hover {
     transform: translate(-4px, -4px) skewX(-2deg);
     box-shadow: 12px 12px 0 var(--p5-red);
 }
-.project-card:hover::before {
+.project-card:hover::before,
+.experience-card:hover::before {
     transform: translateX(0) skewX(-15deg);
 }
 .project-card:hover h3,
 .project-card:hover .project-date,
-.project-card:hover .project-details li {
+.project-card:hover .project-details li,
+.experience-card:hover h3,
+.experience-card:hover .experience-company,
+.experience-card:hover .experience-date,
+.experience-card:hover .experience-details li {
     color: var(--p5-white);
 }
-.project-card:hover .project-icon {
+.project-card:hover .project-icon,
+.experience-card:hover .project-icon {
     color: var(--p5-white);
     transform: translate(6px, -8px) rotate(15deg);
 }
 
-[data-theme="light"] .project-card {
+[data-theme="light"] .project-card,
+[data-theme="light"] .experience-card {
     background-color: var(--p5-white);
     box-shadow: 6px 6px 0 var(--p5-black);
 }
-[data-theme="light"] .project-card:hover {
+[data-theme="light"] .project-card:hover,
+[data-theme="light"] .experience-card:hover {
     box-shadow: 12px 12px 0 var(--p5-red);
 }
 
@@ -1248,6 +1322,7 @@ section {
 /* Section headings get a red angular tick */
 #about h2,
 #education h2,
+#experience h2,
 #projects h2,
 #contact h2 {
     position: relative;
@@ -1256,10 +1331,12 @@ section {
 }
 #about h2::before,
 #education h2::before,
+#experience h2::before,
 #projects h2::before,
 #contact h2::before,
 #about h2::after,
 #education h2::after,
+#experience h2::after,
 #projects h2::after,
 #contact h2::after {
     content: "";
@@ -1272,6 +1349,7 @@ section {
 }
 #about h2::before,
 #education h2::before,
+#experience h2::before,
 #projects h2::before,
 #contact h2::before {
     right: 100%;
@@ -1279,6 +1357,7 @@ section {
 }
 #about h2::after,
 #education h2::after,
+#experience h2::after,
 #projects h2::after,
 #contact h2::after {
     left: 100%;
@@ -1288,12 +1367,14 @@ section {
 /* Keep the H2 row centered */
 #about .container,
 #education .container,
+#experience .container,
 #projects .container,
 #contact .container {
     text-align: center;
 }
 #about .about-content,
 #education .education-content,
+#experience .experience-grid,
 #projects .projects-grid {
     text-align: left;
 }
@@ -1337,7 +1418,8 @@ footer {
     }
 
     /* Lighter angular shadows so cards don't feel heavy on smaller screens */
-    .project-card {
+    .project-card,
+    .experience-card {
         box-shadow: 4px 4px 0 var(--p5-red-dark);
     }
     .cta-button {
@@ -1350,6 +1432,7 @@ footer {
     /* Disable transform-based hover lifts on touch to avoid sticky states */
     @media (hover: none) {
         .project-card:hover,
+        .experience-card:hover,
         .cta-button:hover,
         .skills-list li:hover {
             transform: none;
@@ -1368,10 +1451,11 @@ footer {
         justify-content: space-evenly;
     }
 
+    /* Five links need to share ~300px here, so tighten the type */
     .nav-links a {
-        padding: 0.3rem 0.15rem;
-        font-size: 0.72rem;
-        letter-spacing: 0.03em;
+        padding: 0.3rem 0.1rem;
+        font-size: 0.66rem;
+        letter-spacing: 0.02em;
     }
 
     .theme-toggle {
@@ -1388,10 +1472,12 @@ footer {
        don't crowd the title on narrow screens */
     #about h2::before,
     #education h2::before,
+    #experience h2::before,
     #projects h2::before,
     #contact h2::before,
     #about h2::after,
     #education h2::after,
+    #experience h2::after,
     #projects h2::after,
     #contact h2::after {
         width: 16px;
@@ -1399,12 +1485,14 @@ footer {
     }
     #about h2,
     #education h2,
+    #experience h2,
     #projects h2,
     #contact h2 {
         padding: 0 0.75rem;
     }
 
-    .project-card {
+    .project-card,
+    .experience-card {
         padding: 1.25rem;
     }
 

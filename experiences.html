@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Carlos Roldan - Experience and Projects">
+        <title>Experience &amp; Projects - Carlos Roldan</title>
+        <script>
+            (function () {
+                var t = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', t);
+            })();
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            /* ---------- Page header ---------- */
+            .experience-header {
+                position: relative;
+                padding: 5rem 2rem 2.5rem;
+                text-align: center;
+                background-color: var(--bg-primary);
+                box-shadow: 0 2px 0 var(--p5-red);
+            }
+
+            .experience-header h1 {
+                font-family: var(--p5-font-display);
+                font-size: clamp(2rem, 7vw, 3rem);
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                color: var(--text-primary);
+                margin: 0 0 0.5rem;
+            }
+
+            .experience-header .subtitle {
+                color: var(--text-secondary);
+                font-size: clamp(1rem, 3vw, 1.15rem);
+                margin: 0 0 1.5rem;
+            }
+
+            /* Jump links to the two sections on this page */
+            .page-nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .page-nav a {
+                display: inline-block;
+                padding: 0.5rem 1.4rem;
+                background: var(--card-bg);
+                color: var(--text-primary);
+                border: 2px solid var(--p5-red);
+                clip-path: var(--p5-cut-chip);
+                text-decoration: none;
+                font-family: var(--p5-font-display);
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                font-weight: 600;
+                font-size: 0.9rem;
+                transition: background-color 0.25s var(--p5-snap),
+                            color 0.25s var(--p5-snap),
+                            transform 0.25s var(--p5-snap);
+            }
+
+            .page-nav a:hover {
+                background: var(--p5-red);
+                color: var(--p5-white);
+                transform: skewX(-8deg) translateY(-2px);
+            }
+
+            .header-actions {
+                position: absolute;
+                top: 1.5rem;
+                right: 2rem;
+                display: flex;
+                align-items: center;
+                gap: 0.85rem;
+                z-index: 10;
+            }
+
+            .home-button {
+                padding: 0.7rem 1.6rem;
+                font-size: 0.95rem;
+            }
+
+            /* Anchor jumps should land just above the section title */
+            main section[id] {
+                scroll-margin-top: 1.5rem;
+            }
+
+            /* Section bodies are left-aligned; the H2 row stays centered via styles.css */
+            #experience .experience-timeline,
+            #projects .projects-list {
+                text-align: left;
+            }
+
+            /* ---------- Experience timeline ---------- */
+            .experience-timeline {
+                position: relative;
+                max-width: 900px;
+                margin: 0 auto;
+                padding-left: clamp(1.5rem, 5vw, 2.5rem);
+            }
+
+            .experience-timeline::before {
+                content: "";
+                position: absolute;
+                top: 0.5rem;
+                bottom: 0.5rem;
+                left: 0;
+                width: 4px;
+                background: var(--p5-red);
+            }
+
+            .experience-entry {
+                position: relative;
+                isolation: isolate;
+                background: var(--card-bg);
+                color: var(--text-primary);
+                clip-path: var(--p5-cut-md);
+                padding: clamp(1.5rem, 4vw, 2rem);
+                margin: 0 0 2rem;
+                box-shadow: 8px 8px 0 var(--p5-red-dark);
+                transition: transform 0.3s var(--p5-snap),
+                            box-shadow 0.3s var(--p5-snap);
+            }
+
+            .experience-entry:last-child {
+                margin-bottom: 0;
+            }
+
+            .experience-entry:hover {
+                transform: translate(-4px, -4px) skewX(-1.5deg);
+                box-shadow: 14px 14px 0 var(--p5-red);
+            }
+
+            .experience-entry-head {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: baseline;
+                justify-content: space-between;
+                gap: 0.5rem 1.5rem;
+                margin-bottom: 0.35rem;
+            }
+
+            .experience-entry h3 {
+                font-family: var(--p5-font-display);
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                font-size: clamp(1.35rem, 4.5vw, 1.75rem);
+                margin: 0;
+                line-height: 1.2;
+            }
+
+            .experience-entry .experience-period {
+                display: inline-block;
+                background: var(--p5-red);
+                color: var(--p5-white);
+                clip-path: var(--p5-cut-chip);
+                padding: 0.3rem 0.9rem;
+                font-family: var(--p5-font-display);
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+
+            .experience-entry .experience-org {
+                font-family: var(--p5-font-display);
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                font-size: 0.95rem;
+                color: var(--accent-color);
+                margin: 0 0 1rem;
+            }
+
+            .experience-entry .experience-summary {
+                color: var(--text-primary);
+                margin: 0 0 1rem;
+            }
+
+            .experience-entry ul {
+                margin: 0 0 1.25rem;
+                padding-left: 1.25rem;
+                color: var(--text-secondary);
+            }
+
+            .experience-entry ul li {
+                margin-bottom: 0.5rem;
+            }
+
+            .experience-tags {
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            .experience-tag {
+                display: inline-block;
+                background: var(--bg-primary);
+                color: var(--text-primary);
+                border: 1px solid var(--border-color);
+                padding: 0.35rem 0.9rem;
+                clip-path: var(--p5-cut-chip);
+                font-family: var(--p5-font-display);
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                transition: transform 0.25s var(--p5-snap),
+                            background-color 0.25s var(--p5-snap),
+                            color 0.25s var(--p5-snap);
+            }
+
+            .experience-tag:hover {
+                transform: skewX(-10deg) translateY(-2px);
+                background: var(--p5-red);
+                color: var(--p5-white);
+            }
+
+            .experience-links,
+            .project-links {
+                margin-top: 1rem;
+            }
+
+            .experience-links a,
+            .project-links a {
+                position: relative;
+                display: inline-block;
+                overflow: hidden;
+                isolation: isolate;
+                margin-right: 1rem;
+                color: var(--p5-white);
+                background: var(--p5-red);
+                text-decoration: none;
+                padding: 0.6rem 1.4rem;
+                border: none;
+                border-radius: 0;
+                clip-path: var(--p5-cut-sm);
+                font-family: var(--p5-font-display);
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                font-weight: 700;
+                box-shadow: 5px 5px 0 var(--p5-black);
+                transition: transform 0.25s var(--p5-snap),
+                            color 0.25s var(--p5-snap),
+                            box-shadow 0.25s var(--p5-snap);
+            }
+
+            .experience-links a::before,
+            .project-links a::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: var(--p5-black);
+                transform: translateX(-101%) skewX(-20deg);
+                transition: transform 0.4s var(--p5-snap);
+                z-index: -1;
+            }
+
+            .experience-links a:hover,
+            .project-links a:hover {
+                transform: translate(-3px, -3px) skewX(-4deg);
+                color: var(--p5-red);
+                box-shadow: 9px 9px 0 var(--p5-red-dark);
+            }
+
+            .experience-links a:hover::before,
+            .project-links a:hover::before {
+                transform: translateX(0) skewX(-20deg);
+            }
+
+            /* ---------- Projects ---------- */
+            .projects-list {
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            .project-detail {
+                position: relative;
+                isolation: isolate;
+                background: var(--card-bg);
+                color: var(--text-primary);
+                border-radius: 0;
+                clip-path: var(--p5-cut-md);
+                padding: 2rem;
+                margin: 0 0 2rem;
+                box-shadow: 8px 8px 0 var(--p5-red-dark);
+                transition: transform 0.3s var(--p5-snap),
+                            box-shadow 0.3s var(--p5-snap);
+            }
+
+            .project-detail:last-child {
+                margin-bottom: 0;
+            }
+
+            .project-detail:hover {
+                transform: translate(-4px, -4px) skewX(-1.5deg);
+                box-shadow: 14px 14px 0 var(--p5-red);
+            }
+
+            .project-detail h3 {
+                font-family: var(--p5-font-display);
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                font-size: clamp(1.35rem, 4.5vw, 1.75rem);
+                margin: 0 0 0.5rem;
+                line-height: 1.2;
+            }
+
+            .project-detail > img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 0;
+                clip-path: var(--p5-cut-sm);
+                margin: 1rem 0;
+            }
+
+            .project-tags {
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                margin: 1rem 0;
+            }
+
+            .project-tag {
+                display: inline-block;
+                background: var(--p5-red);
+                color: var(--p5-white);
+                padding: 0.4rem 1rem;
+                border-radius: 0;
+                clip-path: var(--p5-cut-chip);
+                font-family: var(--p5-font-display);
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                transition: transform 0.25s var(--p5-snap);
+            }
+
+            .project-tag:hover {
+                transform: skewX(-10deg) translateY(-2px);
+            }
+
+            /* Peek-a-boo project gallery (ARGoS) */
+            .project-gallery {
+                margin: 1.5rem 0 1rem;
+                position: relative;
+                --gallery-slide-width: 100%;
+                width: 100%;
+            }
+
+            .project-gallery-viewport {
+                overflow: hidden;
+                width: 100vw;
+                max-width: 100vw;
+                margin-left: calc(50% - 50vw);
+                padding: 1rem 0 0.5rem;
+                touch-action: pan-y;
+                cursor: grab;
+                user-select: none;
+                -webkit-user-select: none;
+            }
+
+            .project-gallery-viewport.is-dragging {
+                cursor: grabbing;
+                touch-action: none;
+            }
+
+            .project-gallery-track {
+                display: flex;
+                align-items: center;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                will-change: transform;
+                transition: transform 0.55s var(--p5-snap);
+            }
+
+            .project-gallery-track.is-dragging,
+            .project-gallery-track.is-dragging .project-gallery-slide {
+                transition: none;
+            }
+
+            .project-gallery-slide {
+                flex: 0 0 var(--gallery-slide-width);
+                width: var(--gallery-slide-width);
+                max-width: var(--gallery-slide-width);
+                padding: 0 0.5rem;
+                box-sizing: border-box;
+                transition: transform 0.55s var(--p5-snap),
+                            opacity 0.55s var(--p5-snap),
+                            filter 0.55s var(--p5-snap);
+                transform: scale(0.78);
+                opacity: 0.35;
+                filter: saturate(0.55) brightness(0.85);
+            }
+
+            .project-gallery-slide.is-active {
+                transform: scale(1);
+                opacity: 1;
+                filter: none;
+                z-index: 2;
+            }
+
+            .project-gallery-slide.is-prev,
+            .project-gallery-slide.is-next {
+                transform: scale(0.86);
+                opacity: 0.5;
+                filter: saturate(0.75) brightness(0.92);
+            }
+
+            .project-gallery-frame {
+                background: var(--bg-primary);
+                clip-path: var(--p5-cut-sm);
+                box-shadow: 5px 5px 0 var(--p5-gray);
+                transition: box-shadow 0.55s var(--p5-snap);
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .project-gallery-slide.is-active .project-gallery-frame {
+                box-shadow: 10px 10px 0 var(--p5-red-dark);
+            }
+
+            .project-gallery-slide.is-prev .project-gallery-frame,
+            .project-gallery-slide.is-next .project-gallery-frame {
+                box-shadow: 6px 6px 0 var(--p5-red-dark);
+            }
+
+            .project-gallery-slide img {
+                display: block;
+                max-width: 100%;
+                width: auto;
+                height: auto;
+                margin: 0;
+                clip-path: none;
+                border-radius: 0;
+                object-fit: contain;
+            }
+
+            .project-gallery-caption {
+                margin-top: 0.65rem;
+                font-family: var(--p5-font-display);
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                font-size: 0.78rem;
+                color: var(--text-secondary);
+                text-align: center;
+                opacity: 0;
+                transform: translateY(4px);
+                transition: opacity 0.4s var(--p5-snap),
+                            transform 0.4s var(--p5-snap);
+            }
+
+            .project-gallery-slide.is-active .project-gallery-caption {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .project-gallery-hint {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+            }
+
+            /* ---------- Responsive ---------- */
+            @media (max-width: 640px) {
+                .experience-header {
+                    padding: 5.5rem 1rem 2rem;
+                }
+                .header-actions {
+                    top: 0.75rem;
+                    right: 0.75rem;
+                    gap: 0.45rem;
+                }
+                .home-button {
+                    padding: 0.45rem 0.85rem;
+                    font-size: 0.72rem;
+                    letter-spacing: 0.06em;
+                }
+                .header-actions .theme-toggle {
+                    width: 32px;
+                    height: 32px;
+                    margin-left: 0;
+                }
+                .header-actions .theme-toggle svg {
+                    width: 15px;
+                    height: 15px;
+                }
+                .page-nav a {
+                    padding: 0.4rem 1rem;
+                    font-size: 0.8rem;
+                }
+                .experience-entry,
+                .project-detail {
+                    box-shadow: 5px 5px 0 var(--p5-red-dark);
+                }
+                .project-detail {
+                    padding: 1.5rem;
+                }
+                .experience-entry-head {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="experience-header">
+            <div class="header-actions">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="index.html" class="cta-button home-button">Home</a>
+            </div>
+            <h1>Experience &amp; Projects</h1>
+            <p class="subtitle">Where I've worked, researched, and what I've built</p>
+            <ul class="page-nav">
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </header>
+
+        <main>
+            <section id="experience">
+                <div class="container">
+                    <h2>Experience</h2>
+                    <div class="experience-timeline">
+                        <article class="experience-entry">
+                            <div class="experience-entry-head">
+                                <h3>Engineering Team Member</h3>
+                                <span class="experience-period">2026 &ndash; Present</span>
+                            </div>
+                            <p class="experience-org">VecSpace AI &mdash; Edge AI Startup, South Texas</p>
+                            <p class="experience-summary">
+                                Member of an early-stage startup building spatially aware edge-AI systems that secure,
+                                automate, and oversee public infrastructure: camera-based gated access control for
+                                communities and parking surveillance for garages and arenas.
+                            </p>
+                            <ul>
+                                <li>Contributing to Sentinel, a license plate recognition (LPR) access control system that replaces PIN pads and RFID tags at gated communities.</li>
+                                <li>Supporting Arbiter and Omnis, parking intelligence products that combine LPR ticketing, live occupancy mapping, and gate demand sensing.</li>
+                                <li>Working with edge hardware such as Raspberry Pi CM4 camera nodes and NVIDIA Jetson Orin Nano units connected through AWS IoT Core.</li>
+                            </ul>
+                            <div class="experience-tags">
+                                <span class="experience-tag">Edge AI</span>
+                                <span class="experience-tag">Computer Vision</span>
+                                <span class="experience-tag">IoT</span>
+                                <span class="experience-tag">Startup</span>
+                            </div>
+                            <div class="experience-links">
+                                <a href="https://www.vecspaceai.com/" target="_blank" rel="noopener noreferrer">VecSpace AI</a>
+                            </div>
+                        </article>
+
+                        <article class="experience-entry">
+                            <div class="experience-entry-head">
+                                <h3>Design Manager &amp; Software Team Co-Lead</h3>
+                                <span class="experience-period">2026 &ndash; Present</span>
+                            </div>
+                            <p class="experience-org">SARE &mdash; Society of Aerospace and Robotic Engineers, UTRGV</p>
+                            <p class="experience-summary">
+                                Leadership role in UTRGV's student aerospace and robotics engineering organization,
+                                which builds hands-on projects and competes in programs such as NASA MINDS.
+                            </p>
+                            <ul>
+                                <li>Manage design direction across the organization's projects, from concept through review.</li>
+                                <li>Co-lead the Software Team: plan work, run design reviews, and mentor members.</li>
+                                <li>Coordinate software efforts with the mechanical and structures teams so hardware and code come together on schedule.</li>
+                            </ul>
+                            <div class="experience-tags">
+                                <span class="experience-tag">Leadership</span>
+                                <span class="experience-tag">Robotics</span>
+                                <span class="experience-tag">Software Design</span>
+                                <span class="experience-tag">Team Management</span>
+                            </div>
+                        </article>
+
+                        <article class="experience-entry">
+                            <div class="experience-entry-head">
+                                <h3>Electronics Repair Technician</h3>
+                                <span class="experience-period">2020 &ndash; Present</span>
+                            </div>
+                            <p class="experience-org">Independent</p>
+                            <p class="experience-summary">
+                                Hands-on diagnosis and repair of consumer electronics, from cracked screens to
+                                board-level component work.
+                            </p>
+                            <ul>
+                                <li>Diagnose and repair smartphones and laptops across Android, iPhone, and Windows devices.</li>
+                                <li>Perform soldering, component replacement, and software troubleshooting.</li>
+                                <li>Communicate clearly with customers about issues, repair options, and turnaround time.</li>
+                            </ul>
+                            <div class="experience-tags">
+                                <span class="experience-tag">Hardware Repair</span>
+                                <span class="experience-tag">Soldering</span>
+                                <span class="experience-tag">Troubleshooting</span>
+                                <span class="experience-tag">IT Support</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <div class="container">
+                    <h2>Projects</h2>
+                    <div class="projects-list">
+                        <article class="project-detail" id="project-argos">
+                            <h3>ARGos Path Planning - MARS</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">C++</span>
+                                <span class="project-tag">Open-Sourced</span>
+                                <span class="project-tag">Robotics Simulation</span>
+                            </div>
+                            <div class="project-gallery project-gallery--gesture" aria-roledescription="carousel" aria-label="ARGoS project screenshots">
+                                <p class="project-gallery-hint" id="argos-gallery-hint">
+                                    Swipe, drag, or tap the left and right edges to browse screenshots. Arrow keys also work when focused.
+                                </p>
+                                <div class="project-gallery-viewport" aria-describedby="argos-gallery-hint">
+                                    <ul class="project-gallery-track">
+                                        <li class="project-gallery-slide is-active">
+                                            <div class="project-gallery-frame">
+                                                <img src="diffusion%20example.png" alt="ARGoS simulation showing foot-bot robots navigating around obstacles">
+                                            </div>
+                                            <p class="project-gallery-caption">Path planning — obstacle navigation</p>
+                                        </li>
+                                        <li class="project-gallery-slide">
+                                            <div class="project-gallery-frame">
+                                                <img src="flocking%20sample.png" alt="ARGoS simulation showing a robot swarm with cyan communication links demonstrating flocking behavior">
+                                            </div>
+                                            <p class="project-gallery-caption">Flocking — decentralized swarm coordination</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p>
+                                A path planning algorithm for the ARGos robotics simulator,
+                                developed as part of the MARS Lab research project at the University of Texas at Rio Grande Valley.
+                            </p>
+                            <!-- <div class="project-links">
+                                <a href="#" target="_blank">Live Demo</a>
+                                <a href="#" target="_blank">GitHub Repository</a>
+                            </div> -->
+                        </article>
+
+                        <article class="project-detail">
+                            <h3>Pi-hole Network Project – Raspberry Pi</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Raspberry Pi</span>
+                                <span class="project-tag">Networking</span>
+                                <span class="project-tag">DNS Filtering</span>
+                            </div>
+                            <img src="https://via.placeholder.com/800x400" alt="Project 2 Screenshot">
+                            <p>Deployed Pi-hole for DNS-level ad blocking and traffic analysis on a local network.
+                                Configured secure network services for improved privacy and performance, gaining
+                                practical experience in DNS filtering, traffic analysis, and local network administration.</p>
+                            <!-- <div class="project-links">
+                                <a href="#" target="_blank">Live Demo</a>
+                                <a href="#" target="_blank">GitHub Repository</a>
+                            </div> -->
+                        </article>
+
+                        <article class="project-detail">
+                            <h3>Electronics Repair</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Maintanence</span>
+                                <span class="project-tag">Problem-solving</span>
+                                <span class="project-tag">Critical Thinking</span>
+                            </div>
+                            <img src="https://via.placeholder.com/800x400" alt="Project 3 Screenshot">
+                            <p>Skilled in diagnosing and repairing smartphones and laptops, with hands-on experience working with both
+                                Android and iPhone devices. Proficient in soldering, component replacement, and software troubleshooting.</p>
+                            <!--<div class="project-links">
+                                <a href="#" target="_blank">App Store</a>
+                                <a href="#" target="_blank">GitHub Repository</a>
+                            </div>-->
+                        </article>
+
+                        <article class="project-detail">
+                            <h3>Chess Game</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">JavaScript</span>
+                                <span class="project-tag">HTML</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">Game Development</span>
+                            </div>
+                            <img src="Chess%20game.png" alt="Chess game web app with board, move history, and turn indicator">
+                            <p>A two-player chess game built with JavaScript, HTML, and CSS, featuring an interactive board, move history, and game controls like undo and flip board.</p>
+                        </article>
+
+                        <article class="project-detail">
+                            <h3>GitHub User Activity</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">CLI</span>
+                                <span class="project-tag">REST API</span>
+                                <span class="project-tag">JSON</span>
+                                <span class="project-tag">GitHub API</span>
+                            </div>
+                            <img src="github-user-activity.png" alt="GitHub User Activity CLI showing recent activity for user CR3op in the terminal">
+                            <p>
+                                A command line interface that fetches the recent activity of a GitHub user and displays it in the terminal.
+                                This project helped me practice working with APIs, handling JSON data, and building a simple CLI application.
+                            </p>
+                            <!-- <div class="project-links">
+                                <a href="#" target="_blank">GitHub Repository</a>
+                            </div> -->
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Carlos Roldan. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+        <script>
+            document.querySelectorAll('.project-gallery--gesture').forEach(function (gallery) {
+                var track = gallery.querySelector('.project-gallery-track');
+                var viewport = gallery.querySelector('.project-gallery-viewport');
+                var slides = Array.from(gallery.querySelectorAll('.project-gallery-slide'));
+                var activeIndex = slides.findIndex(function (slide) {
+                    return slide.classList.contains('is-active');
+                });
+                if (activeIndex < 0) activeIndex = 0;
+
+                var baseOffset = 0;
+                var dragOffset = 0;
+                var isDragging = false;
+                var hasMoved = false;
+                var startX = 0;
+                var activePointerId = null;
+                var dragThreshold = 8;
+                var snapRatio = 0.2;
+                var edgeTapRatio = 0.2;
+
+                function getCenterOffset(index) {
+                    var slide = slides[index];
+                    return (viewport.offsetWidth / 2) - (slide.offsetLeft + slide.offsetWidth / 2);
+                }
+
+                function applyTransform(offset, animate) {
+                    track.classList.toggle('is-dragging', !animate);
+                    viewport.classList.toggle('is-dragging', !animate);
+                    track.style.transform = 'translateX(' + offset + 'px)';
+                }
+
+                function updateClasses() {
+                    var total = slides.length;
+                    slides.forEach(function (slide, index) {
+                        slide.classList.remove('is-active', 'is-prev', 'is-next');
+                        slide.setAttribute('aria-hidden', index !== activeIndex ? 'true' : 'false');
+                        if (index === activeIndex) {
+                            slide.classList.add('is-active');
+                        } else if (index === (activeIndex - 1 + total) % total) {
+                            slide.classList.add('is-prev');
+                        } else if (index === (activeIndex + 1) % total) {
+                            slide.classList.add('is-next');
+                        }
+                    });
+                    gallery.setAttribute('aria-label',
+                        'ARGoS project screenshots, image ' + (activeIndex + 1) + ' of ' + slides.length);
+                }
+
+                function goTo(index, animate) {
+                    activeIndex = (index + slides.length) % slides.length;
+                    updateClasses();
+                    baseOffset = getCenterOffset(activeIndex);
+                    dragOffset = 0;
+                    applyTransform(baseOffset, animate);
+                }
+
+                function setSlideWidths() {
+                    gallery.style.setProperty('--gallery-slide-width', gallery.offsetWidth + 'px');
+                    baseOffset = getCenterOffset(activeIndex);
+                    dragOffset = 0;
+                    applyTransform(baseOffset, false);
+                }
+
+                function finishDrag(pointerX) {
+                    var snapThreshold = viewport.offsetWidth * snapRatio;
+
+                    if (hasMoved) {
+                        if (dragOffset < -snapThreshold) {
+                            goTo(activeIndex + 1, true);
+                        } else if (dragOffset > snapThreshold) {
+                            goTo(activeIndex - 1, true);
+                        } else {
+                            dragOffset = 0;
+                            applyTransform(baseOffset, true);
+                        }
+                        return;
+                    }
+
+                    var bounds = viewport.getBoundingClientRect();
+                    var relativeX = pointerX - bounds.left;
+                    var edgeWidth = bounds.width * edgeTapRatio;
+
+                    if (relativeX <= edgeWidth) {
+                        goTo(activeIndex - 1, true);
+                    } else if (relativeX >= bounds.width - edgeWidth) {
+                        goTo(activeIndex + 1, true);
+                    } else {
+                        dragOffset = 0;
+                        applyTransform(baseOffset, true);
+                    }
+                }
+
+                function onPointerDown(event) {
+                    if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+                    isDragging = true;
+                    hasMoved = false;
+                    startX = event.clientX;
+                    activePointerId = event.pointerId;
+                    dragOffset = 0;
+                    viewport.setPointerCapture(event.pointerId);
+                }
+
+                function onPointerMove(event) {
+                    if (!isDragging || event.pointerId !== activePointerId) return;
+
+                    dragOffset = event.clientX - startX;
+                    if (Math.abs(dragOffset) > dragThreshold) {
+                        hasMoved = true;
+                    }
+
+                    if (!hasMoved) return;
+
+                    if (event.cancelable) {
+                        event.preventDefault();
+                    }
+
+                    applyTransform(baseOffset + dragOffset, false);
+                }
+
+                function onPointerEnd(event) {
+                    if (!isDragging || event.pointerId !== activePointerId) return;
+
+                    isDragging = false;
+                    activePointerId = null;
+
+                    if (viewport.hasPointerCapture(event.pointerId)) {
+                        viewport.releasePointerCapture(event.pointerId);
+                    }
+
+                    finishDrag(event.clientX);
+                }
+
+                viewport.addEventListener('pointerdown', onPointerDown);
+                viewport.addEventListener('pointermove', onPointerMove);
+                viewport.addEventListener('pointerup', onPointerEnd);
+                viewport.addEventListener('pointercancel', onPointerEnd);
+
+                gallery.setAttribute('tabindex', '0');
+                gallery.addEventListener('keydown', function (event) {
+                    if (event.key === 'ArrowLeft') {
+                        event.preventDefault();
+                        goTo(activeIndex - 1, true);
+                    } else if (event.key === 'ArrowRight') {
+                        event.preventDefault();
+                        goTo(activeIndex + 1, true);
+                    }
+                });
+
+                window.addEventListener('resize', setSlideWidths);
+                gallery.querySelectorAll('img').forEach(function (img) {
+                    if (img.complete) return;
+                    img.addEventListener('load', setSlideWidths, { once: true });
+                });
+
+                updateClasses();
+                setSlideWidths();
+            });
+        </script>
+    </body>
+</html>
