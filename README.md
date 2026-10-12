@@ -1,35 +1,64 @@
 # My Developer Portfolio
 
-A two-page personal portfolio website designed with a high-contrast, stylized aesthetic inspired by **Persona 5**. This project serves as a digital hub to showcase my technical skills and completed projects.
+A single-page personal portfolio website with a **Mecha HUD** look — a tactical, sci-fi cockpit-style interface. It's my digital hub for my experience, projects, and technical skills.
+
+Live at [www.carlos-roldan.com](https://www.carlos-roldan.com).
 
 ---
 
 ## 🎨 Design Philosophy
 
-This site draws heavy inspiration from the **Persona 5 UI**, featuring:
-*   **High-Contrast Color Palette:** A clean, striking mix of red, black, and white.
-*   **Dynamic Motion:** Custom animations on button hovers and page transitions to mimic the "snappy" feel of stylized game menus.
-*   **Industrial Layout:** A focus on structured storage and clean lines, balancing flair with usability.
+Version 2.0 replaces the original Persona 5–inspired design with a military-grade HUD aesthetic inspired by sci-fi anime engineering interfaces (*Knights of Sidonia*, Gundam cockpit telemetry). It features:
+
+*   **Dark Cockpit Palette:** Graphite and void-black panels with hazard orange, laser cyan, and caution amber accents.
+*   **Technical Typography:** Space Grotesk headlines, JetBrains Mono body text, and Space Mono micro-labels.
+*   **Mechanical Shapes:** Chamfered (cut-corner) panels, 3D bevel buttons that press down, and a visible background grid.
+*   **HUD Motion:** Flickering status lights, scrambling "decipher" headings, and a scanline sweep as each section scrolls into view. All animations turn off for visitors who prefer reduced motion.
 
 ---
 
 ## 🏗️ Website Structure
 
-The site is split into two core sections for a streamlined user experience:
+The whole site is now one page, with a sticky navigation bar that highlights the section you're viewing:
 
-### 1. Home Page
-The landing experience featuring a brief introduction, my core technical stack, and quick links to my professional background. 
+1. **About** — Introduction, degree, and engineering highlights.
+2. **Experience** — Career timeline: VecSpace AI, SARE (NASA MINDS), electronics repair, and my UTRGV degree.
+3. **Projects** — Six featured projects across robotics, edge AI, networking, and hardware.
+4. **Skills** — Languages, robotics & edge AI, and hardware lab skills.
+5. **Contact** — LinkedIn and GitHub links plus a contact form (message delivery isn't live yet).
 
-### 2. Projects Page
-A dedicated gallery of my work, including technical descriptions, tools used, and links to live demos or repositories. 
+The separate `projects.html` and `contact.html` pages from version 1 have been folded into the main page.
+
+---
+
+## 📱 Responsive Layout
+
+The layout adapts to the screen size:
+
+*   **Desktop:** 12-column layout with side-by-side panels.
+*   **Tablet:** 2-column card grids.
+*   **Mobile:** Single-column stack with a swipeable navigation row and tighter spacing.
+
+---
+
+## 📁 Files
+
+| File | Purpose |
+| --- | --- |
+| `index.html` | The page markup |
+| `tailwind-theme.js` | Design tokens: colors, fonts, spacing, and type sizes |
+| `hud.css` | Custom styles: animations, chamfered shapes, bevel buttons |
+| `hud.js` | Section reveals, heading scramble effect, nav highlighting, contact form |
+| `CNAME` | Custom domain for GitHub Pages |
 
 ---
 
 ## 🛠️ Tech Stack
 
 * **Frontend:** HTML5 (Semantic Structure)
-* **Styling:** Tailwind CSS (Utility-First Styling & Layout)
-* **Animations:** Tailwind transition and hover utilities for sharp, reactive button states.
+* **Styling:** Tailwind CSS (via CDN) + custom CSS
+* **Interactivity:** Vanilla JavaScript (Intersection Observer for scroll effects)
+* **Hosting:** GitHub Pages
 
 ---
 
