@@ -1,148 +1,685 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Your Name - Portfolio">
-        <title>Carlos Roldan| Portfolio</title>
-        <script>
-            (function () {
-                var t = localStorage.getItem('theme') || 'dark';
-                document.documentElement.setAttribute('data-theme', t);
-            })();
-        </script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <header>
-            <nav>
-                <div class="nav-content">
-                    <ul class="nav-links">
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Carlos Roldan — Software & Systems Engineer. Edge AI, robotics, embedded systems, and hardware repair.">
+    <meta name="theme-color" content="#0c0e11">
+    <title>Carlos Roldan // Portfolio</title>
+    <script>document.documentElement.classList.add('js');</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="tailwind-theme.js"></script>
+    <link rel="stylesheet" href="hud.css">
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md min-h-screen bg-grid-tech selection:bg-primary-container selection:text-on-primary relative overflow-x-hidden">
+
+    <!-- TOP STATUS BANNER STRIP -->
+    <aside aria-label="Status" class="w-full bg-surface-container-lowest border-b border-outline-variant px-3 md:px-space-lg py-1 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-on-surface-variant font-label-micro text-[10px] sm:text-label-micro select-none">
+        <div class="flex items-center gap-space-sm min-w-0">
+            <span class="inline-block w-2 h-2 bg-primary-container rounded-full flex-shrink-0 hud-dim-glow-flicker"></span>
+            <span class="tracking-wider">STATUS: AVAILABLE FOR NEW ROLES &amp; COLLABORATION</span>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-space-md">
+            <span class="text-secondary-fixed">PORTFOLIO // V2.0</span>
+            <span class="text-outline">|</span>
+            <span class="text-primary font-bold">SYSTEM ONLINE</span>
+        </div>
+    </aside>
+
+    <!-- TOP NAV -->
+    <nav aria-label="Primary" class="w-full px-3 md:px-space-lg py-2 md:py-space-sm border-b border-outline-variant bg-surface-container-lowest/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="flex items-center justify-between gap-2">
+            <a href="#hero" class="flex items-center gap-2 sm:gap-space-md min-w-0">
+                <span class="w-7 h-7 bg-primary-container text-on-primary-container flex items-center justify-center font-bold font-headline-sm rounded flex-shrink-0">CR</span>
+                <span class="min-w-0">
+                    <span class="block font-headline-sm text-[15px] sm:text-headline-sm tracking-wide text-primary font-bold truncate">CARLOS ROLDAN</span>
+                    <span class="flex items-center gap-1 text-on-surface-variant font-label-micro text-[9px] sm:text-label-micro tracking-wider">
+                        <span class="w-1.5 h-1.5 bg-secondary-fixed rounded-full inline-block flex-shrink-0"></span>
+                        <span class="truncate">SOFTWARE DEVELOPER</span>
+                    </span>
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-space-md lg:gap-space-lg">
+                <a class="nav-link text-on-surface-variant hover:text-primary border-b-2 border-transparent font-label-md text-label-md tracking-wider pb-1 transition-colors" href="#hero">About</a>
+                <a class="nav-link text-on-surface-variant hover:text-primary border-b-2 border-transparent font-label-md text-label-md tracking-wider pb-1 transition-colors" href="#experience">Experience</a>
+                <a class="nav-link text-on-surface-variant hover:text-primary border-b-2 border-transparent font-label-md text-label-md tracking-wider pb-1 transition-colors" href="#projects">Projects</a>
+                <a class="nav-link text-on-surface-variant hover:text-primary border-b-2 border-transparent font-label-md text-label-md tracking-wider pb-1 transition-colors" href="#skills">Skills</a>
+                <a class="nav-link text-on-surface-variant hover:text-primary border-b-2 border-transparent font-label-md text-label-md tracking-wider pb-1 transition-colors" href="#contact">Contact</a>
+            </div>
+
+            <a class="btn-tactile-primary bg-primary-container text-on-primary-container px-3 sm:px-4 py-2 font-label-md text-label-md tracking-wider font-bold inline-flex items-center gap-1.5 rounded flex-shrink-0" href="#contact" aria-label="Get in touch">
+                <span class="hidden min-[400px]:inline">Get in Touch</span>
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+            </a>
+        </div>
+
+        <!-- Mobile nav row -->
+        <div class="no-scrollbar flex md:hidden items-center gap-5 pt-2 mt-2 border-t border-outline-variant/40 overflow-x-auto font-label-micro text-[11px] tracking-wider whitespace-nowrap">
+            <a class="nav-link text-on-surface-variant hover:text-primary border-b-2 border-transparent py-1" href="#hero">About</a>
+            <a class="nav-link text-on-surface-variant hover:text-primary border-b-2 border-transparent py-1" href="#experience">Experience</a>
+            <a class="nav-link text-on-surface-variant hover:text-primary border-b-2 border-transparent py-1" href="#projects">Projects</a>
+            <a class="nav-link text-on-surface-variant hover:text-primary border-b-2 border-transparent py-1" href="#skills">Skills</a>
+            <a class="nav-link text-on-surface-variant hover:text-primary border-b-2 border-transparent py-1" href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <main class="max-w-[1440px] mx-auto px-margin-mobile md:px-space-lg py-space-lg space-y-space-xl relative">
+
+        <!-- Kanji watermark -->
+        <div class="pointer-events-none absolute top-4 right-8 select-none opacity-5 font-headline-xl text-[140px] leading-none text-primary font-bold hidden lg:block tracking-tighter" aria-hidden="true">
+            未来・技術
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 1. HERO                                     -->
+        <!-- ========================================== -->
+        <section id="hero" class="hud-reveal-section scroll-mt-28 md:scroll-mt-20 grid grid-cols-1 lg:grid-cols-12 gap-space-md lg:gap-space-lg items-stretch pt-2">
+
+            <div class="lg:col-span-7 bg-surface-container-lowest border border-outline-variant p-4 sm:p-space-lg relative chamfer-tr flex flex-col justify-between overflow-hidden">
+                <div>
+                    <div class="flex flex-wrap items-center justify-between border-b border-outline-variant/60 pb-space-sm mb-space-md gap-2">
+                        <div class="flex items-center gap-2 font-label-micro text-label-micro text-primary uppercase tracking-wider">
+                            <span class="w-2 h-2 rounded-full bg-primary-container hud-dim-glow-flicker"></span>
+                            <span>PORTFOLIO // OVERVIEW</span>
+                        </div>
+                        <div class="text-[10px] sm:text-[11px] font-label-micro tracking-wider text-outline">B.S. COMPUTER SCIENCE • UTRGV</div>
+                    </div>
+
+                    <div class="space-y-space-md">
+                        <div class="inline-flex items-center gap-2 border border-outline-variant/80 bg-surface-container px-2.5 sm:px-3 py-1 rounded max-w-full">
+                            <span class="relative flex h-2.5 w-2.5 items-center justify-center flex-shrink-0 mr-1">
+                                <span class="absolute inline-flex h-full w-full rounded-full bg-[#00eefc] opacity-75 cyan-beacon-ring"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-[#00eefc] cyan-beacon-core"></span>
+                            </span>
+                            <span class="font-label-micro text-[10px] sm:text-label-micro text-on-surface tracking-wider uppercase font-bold">Computer Science Graduate // Software Engineer</span>
+                        </div>
+
+                        <h1 aria-label="Carlos Roldan" class="font-headline-xl text-[clamp(2rem,9vw,3rem)] font-bold text-on-surface tracking-tight leading-[1.05] uppercase break-words">
+                            <span class="decipher-header inline-block" data-text="CARLOS">CARLOS</span>
+                            <span class="text-primary-container underline decoration-outline-variant decoration-4 underline-offset-8 decipher-header inline-block" data-text="ROLDAN">ROLDAN</span>
+                        </h1>
+
+                        <div class="border-l-2 border-primary-container pl-3 sm:pl-space-md my-space-md bg-surface-container/40 py-2.5 sm:py-3 rounded-r">
+                            <p class="font-headline-sm text-base sm:text-headline-sm text-primary tracking-wide mb-1">“I like to build things and fix stuff.”</p>
+                            <p class="font-body-md text-xs sm:text-body-md text-on-surface-variant leading-relaxed">Computer Science graduate bridging physical hardware and scalable software. Architecting real-time edge AI, deep learning computer vision pipelines, and ROS2 swarm robotics platforms.</p>
+                        </div>
+
+                        <div class="flex flex-col min-[420px]:flex-row flex-wrap gap-3 sm:gap-space-md pt-2">
+                            <a class="btn-tactile-primary bg-primary-container text-on-primary-container px-5 sm:px-6 py-3 font-label-md sm:font-label-lg text-label-md sm:text-label-lg tracking-wider font-bold inline-flex items-center justify-center gap-2 rounded" href="#contact">
+                                <span>Contact</span>
+                                <span class="material-symbols-outlined text-[16px] sm:text-[18px]" aria-hidden="true">mail</span>
+                            </a>
+                            <a class="btn-tactile-cyan bg-surface-container border border-secondary text-secondary-fixed px-5 sm:px-6 py-3 font-label-md sm:font-label-lg text-label-md sm:text-label-lg tracking-wider font-bold inline-flex items-center justify-center gap-2 rounded" href="#experience">
+                                <span>View Experience</span>
+                                <span class="material-symbols-outlined text-[16px] sm:text-[18px]" aria-hidden="true">arrow_downward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-outline-variant/60 pt-space-sm mt-5 sm:mt-space-lg flex flex-col sm:flex-row items-start sm:items-center justify-between text-on-surface-variant font-label-micro text-[10px] sm:text-label-micro gap-2">
+                    <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <span class="text-on-surface font-semibold">DEGREE:</span>
+                        <span>B.S. Computer Science (UTRGV)</span>
+                        <span class="text-outline">|</span>
+                        <span class="text-secondary-fixed">GPA: 3.0</span>
+                    </div>
+                    <div class="text-outline">FOCUS: Edge AI • Robotics • Embedded Systems</div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 flex flex-col gap-space-md">
+                <div class="bg-surface-container-lowest border border-outline-variant p-space-md flex-1 flex flex-col justify-between rounded">
+                    <div class="space-y-3">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-outline-variant/60 pb-2 font-label-micro text-label-micro">
+                            <span class="flex items-center gap-2 text-primary font-bold">
+                                <span class="inline-block w-2 h-2 rounded-full bg-secondary-fixed hud-flicker-delayed shadow-[0_0_8px_rgba(125,244,255,0.9)]"></span>
+                                ENGINEER HIGHLIGHTS
+                            </span>
+                            <span class="text-outline">SPECIALIZATION PROFILE</span>
+                        </div>
+                        <div class="p-3 bg-surface-container border border-outline-variant/50 rounded space-y-2">
+                            <div class="text-secondary-fixed font-label-md text-label-md font-bold">&gt; Core Focus Areas</div>
+                            <p class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed">Edge AI pipelines, embedded vision, ROS2 multi-agent autonomy, high-performance C++ &amp; Go tooling, and diagnostic hardware board repair.</p>
+                        </div>
+                        <ul class="space-y-2 font-body-sm text-body-sm pt-1">
+                            <li class="flex items-start gap-2"><span class="text-primary-container font-bold">•</span><span><strong>Industry:</strong> Systems Engineer at VecSpace AI building edge license plate recognition.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-secondary-fixed font-bold">•</span><span><strong>Leadership:</strong> Software Co-Lead &amp; Design Manager at SARE (NASA MINDS).</span></li>
+                            <li class="flex items-start gap-2"><span class="text-tertiary font-bold">•</span><span><strong>Hardware:</strong> 300+ custom PC, phone, and board diagnoses and repairs completed.</span></li>
+                        </ul>
+                    </div>
+                    <div class="pt-3 mt-3 border-t border-outline-variant/50 flex flex-wrap justify-between items-center gap-2 text-[11px] font-label-micro text-outline">
+                        <span>BASED IN TEXAS</span>
+                        <span class="text-secondary-fixed font-bold">OPEN TO REMOTE / RELOCATION</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 2. EXPERIENCE                               -->
+        <!-- ========================================== -->
+        <section id="experience" class="hud-reveal-section scroll-mt-28 md:scroll-mt-20 space-y-space-md pt-space-lg">
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-outline-variant pb-space-sm gap-2 md:gap-4">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-2.5 h-6 bg-primary-container/60 rounded-sm flex-shrink-0 hud-dim-glow-flicker"></div>
+                    <div class="min-w-0">
+                        <h2 class="font-headline-lg text-headline-lg-mobile sm:text-headline-lg text-on-surface tracking-wide uppercase flex flex-wrap items-baseline gap-x-2">
+                            <span class="font-mono font-bold decipher-header" data-text="Experience">Experience</span>
+                            <span class="text-outline text-body-md sm:text-headline-sm font-normal">// Career Timeline</span>
+                        </h2>
+                        <p class="font-label-micro text-label-micro text-outline tracking-wider">PROFESSIONAL AND PERSONAL</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 font-label-micro text-label-micro text-secondary-fixed flex-shrink-0">
+                    <span class="inline-block w-2 h-2 rounded-full bg-secondary-fixed telemetry-flicker"></span>
+                    <span>3 POSITIONS + DEGREE</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-md">
+                <!-- VecSpace AI -->
+                <article class="md:col-span-2 lg:col-span-7 bg-surface-container-lowest border border-outline-variant p-4 sm:p-space-lg chamfer-tr relative hover:border-primary-container transition-colors hud-card-reveal" style="animation-delay: 100ms;">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start border-b border-outline-variant/60 pb-space-sm mb-space-sm gap-2">
+                        <div>
+                            <span class="font-label-micro text-label-micro px-2 py-0.5 bg-primary-container/20 text-primary-container border border-primary-container font-bold">CURRENT POSITION</span>
+                            <h3 class="font-headline-md text-headline-sm sm:text-headline-md text-on-surface font-bold mt-1">Systems Engineer</h3>
+                            <p class="font-label-md text-label-md text-secondary-fixed">VecSpace AI — Startup Company</p>
+                        </div>
+                        <div class="sm:text-right flex-shrink-0">
+                            <span class="font-label-md text-label-md text-primary font-bold">2026 — PRESENT</span>
+                            <div class="font-label-micro text-label-micro text-outline mt-0.5">SECTOR: MCALLEN, TX</div>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-on-surface-variant font-body-sm sm:font-body-md text-body-sm sm:text-body-md my-space-md">
+                        <li class="flex items-start gap-2"><span class="text-primary-container font-bold mt-0.5">▸</span><span>Contributing to camera-based gated access control and parking surveillance products built on Edge AI.</span></li>
+                        <li class="flex items-start gap-2"><span class="text-primary-container font-bold mt-0.5">▸</span><span>Developing license plate recognition (LPR) pipelines utilizing YOLOv8 object detection algorithms.</span></li>
+                        <li class="flex items-start gap-2"><span class="text-primary-container font-bold mt-0.5">▸</span><span>Deploying and quantizing deep learning models for real-time edge inference on NVIDIA Jetson &amp; Raspberry Pi.</span></li>
                     </ul>
-                    <button class="theme-toggle" aria-label="Toggle theme">
-                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                        </svg>
-                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                    </button>
-                </div>
-            </nav>
-        </header>
+                    <div class="pt-space-sm border-t border-outline-variant/40 flex flex-wrap gap-1.5 sm:gap-2">
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">YOLOv8</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">NVIDIA JETSON</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">RASPBERRY PI</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">COMPUTER VISION</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">PYTHON</span>
+                    </div>
+                </article>
 
-        <main>
-            <section id="hero">
-                <div class="container">
-                    <h1>Hi, I'm <span class="highlight">Carlos Roldan</span></h1>
-                    <p class="subtitle">I build things for the web</p>
-                    <p class="description">Hello! I’m a Computer Science graduate focused on software engineering. 
-                        I like building practical tools, solving real-world problems, and projects where technical work meets creativity and real impact. 
-                        Outside school, I play video games, drawing, and fixing electronics.</p>
-                </div>
-            </section>
+                <!-- SARE -->
+                <article class="md:col-span-2 lg:col-span-5 bg-surface-container-lowest border border-outline-variant p-4 sm:p-space-lg flex flex-col justify-between hover:border-secondary transition-colors hud-card-reveal" style="animation-delay: 200ms;">
+                    <div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start border-b border-outline-variant/60 pb-space-sm mb-space-sm gap-2">
+                            <div>
+                                <span class="font-label-micro text-label-micro px-2 py-0.5 bg-secondary/10 text-secondary-fixed border border-secondary/40 font-bold">NASA / ROBOTICS</span>
+                                <h3 class="font-headline-md text-headline-sm sm:text-headline-md text-on-surface font-bold mt-1">Design Manager &amp; Software Co-Lead</h3>
+                                <p class="font-label-md text-label-md text-secondary-fixed">SARE — Society of Aerospace &amp; Robotic Engineers (UTRGV)</p>
+                            </div>
+                            <div class="sm:text-right flex-shrink-0">
+                                <span class="font-label-md text-label-md text-primary font-bold">2026 — PRESENT</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2 text-on-surface-variant font-body-sm sm:font-body-md text-body-sm sm:text-body-md my-space-md">
+                            <li class="flex items-start gap-2"><span class="text-secondary-fixed font-bold mt-0.5">▸</span><span>Manage design direction for student robotics, avionics, and competitive aerospace projects (NASA MINDS).</span></li>
+                            <li class="flex items-start gap-2"><span class="text-secondary-fixed font-bold mt-0.5">▸</span><span>Co-lead the Software Team, cross-coordinating with mechanical, structures, and flight testing cells.</span></li>
+                        </ul>
+                    </div>
+                    <div class="pt-space-sm border-t border-outline-variant/40 flex flex-wrap gap-1.5 sm:gap-2">
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">ROS2</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">ROBOTICS ARCH</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">C++</span>
+                    </div>
+                </article>
 
-            <section id="about">
-                <div class="container">
-                    <h2>About Me</h2>
-                    <div class="about-content">
-                        <div class="about-text">
-                            <p>I'm a passionate developer with experience in building web applications. 
-                                I love creating solutions that helps people and businesses.</p>
-                            <p>Here are a few programming languages and skills I've learned and developed:</p>
-                            <ul class="skills-list" id="skills-list">
-                                <li>Java</li>
-                                <li>React</li>
-                                <li>Flutter</li>
-                                <li>TypeScript</li>
-                                <li>HTML & CSS</li>
-                                <li>Python</li>
-                                <li class="skill-hidden">SQL</li>
-                                <li class="skill-hidden">Git</li>
-                                <li class="skill-hidden">Docker</li>
-                                <li class="skill-hidden">C++</li>
-                                <li class="skill-hidden">Golang</li>
-                                <li class="skill-hidden">Lua</li>
-                                <li class="skill-hidden">IT Support</li>
-                            </ul>
-                            <button type="button" class="skills-toggle" id="skills-toggle" aria-expanded="false" aria-controls="skills-list">
-                                <span class="skills-toggle-icon" aria-hidden="true">+</span>
-                                <span class="skills-toggle-text">Show more</span>
+                <!-- Electronics Repair -->
+                <article class="md:col-span-1 lg:col-span-6 bg-surface-container-lowest border border-outline-variant p-4 sm:p-space-lg flex flex-col justify-between hover:border-tertiary transition-colors hud-card-reveal" style="animation-delay: 300ms;">
+                    <div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start border-b border-outline-variant/60 pb-space-sm mb-space-sm gap-2">
+                            <div>
+                                <span class="font-label-micro text-label-micro px-2 py-0.5 bg-tertiary/10 text-tertiary border border-tertiary/40 font-bold">HARDWARE BENCH</span>
+                                <h3 class="font-headline-md text-headline-sm sm:text-headline-md text-on-surface font-bold mt-1">Electronics Repair Technician</h3>
+                                <p class="font-label-md text-label-md text-outline">Independent Contractor</p>
+                            </div>
+                            <div class="sm:text-right flex-shrink-0">
+                                <span class="font-label-md text-label-md text-primary font-bold">2020 — PRESENT</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2 text-on-surface-variant font-body-sm sm:font-body-md text-body-sm sm:text-body-md my-space-md">
+                            <li class="flex items-start gap-2"><span class="text-tertiary font-bold mt-0.5">▸</span><span>Diagnosed and troubleshot hardware and software faults across 300+ computers, phones, and iPads/tablets across Android, iOS, and Windows ecosystems.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-tertiary font-bold mt-0.5">▸</span><span>Custom PC building, hardware assembly, component-level replacement, and OS/firmware troubleshooting.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-tertiary font-bold mt-0.5">▸</span><span>Performed device diagnostics, screen replacements, battery repairs, and system recovery.</span></li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-2 border-t border-outline-variant/40">
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">DIAGNOSTICS</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">PC BUILDING</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">HARDWARE TROUBLESHOOTING</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">PHONE &amp; IPAD REPAIR</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] sm:text-[11px] font-label-micro border border-outline-variant">SYSTEM RECOVERY</span>
+                    </div>
+                </article>
+
+                <!-- UTRGV -->
+                <article class="md:col-span-1 lg:col-span-6 bg-surface-container-lowest border border-outline-variant p-4 sm:p-space-lg flex flex-col justify-between hover:border-secondary transition-colors hud-card-reveal" style="animation-delay: 400ms;">
+                    <div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start border-b border-outline-variant/60 pb-space-sm mb-space-sm gap-2">
+                            <div>
+                                <span class="font-label-micro text-label-micro px-2 py-0.5 bg-surface-container text-secondary-fixed border border-outline-variant font-bold">ACADEMIC CREDENTIAL</span>
+                                <h3 class="font-headline-md text-headline-sm sm:text-headline-md text-on-surface font-bold mt-1">University of Texas Rio Grande Valley</h3>
+                                <p class="font-label-md text-label-md text-primary">Bachelor of Science in Computer Science</p>
+                            </div>
+                            <div class="sm:text-right flex-shrink-0">
+                                <span class="font-label-md text-label-md text-on-surface font-bold">GRAD: DEC 2024</span>
+                                <div class="font-label-micro text-label-micro text-tertiary">GPA 3.0</div>
+                            </div>
+                        </div>
+                        <div class="font-label-micro text-label-micro text-outline tracking-wider uppercase mb-1">Relevant Core Coursework:</div>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-on-surface-variant font-body-sm text-body-sm">
+                            <li>• Data Structures &amp; Algorithms</li>
+                            <li>• Operating Systems</li>
+                            <li>• Software Engineering 1 &amp; 2</li>
+                            <li>• Computer Architecture</li>
+                            <li>• Database Design &amp; Impl.</li>
+                            <li>• Object-Oriented Programming</li>
+                        </ul>
+                    </div>
+                    <div class="pt-space-sm mt-3 border-t border-outline-variant/40 flex flex-wrap justify-between items-center font-label-micro text-label-micro text-outline gap-1">
+                        <span>COLLEGE OF ENGINEERING &amp; COMP SCI</span>
+                        <span class="text-secondary-fixed font-bold">DEGREE CONFERRED</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 3. PROJECTS                                 -->
+        <!-- ========================================== -->
+        <section id="projects" class="hud-reveal-section scroll-mt-28 md:scroll-mt-20 space-y-space-md pt-space-lg">
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-outline-variant pb-space-sm gap-2 md:gap-4">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-2.5 h-6 bg-secondary-fixed rounded-sm flex-shrink-0 hud-flicker-delayed shadow-[0_0_8px_rgba(6,182,212,0.35)]"></div>
+                    <div class="min-w-0">
+                        <h2 class="font-headline-lg text-headline-lg-mobile sm:text-headline-lg text-on-surface tracking-wide uppercase flex flex-wrap items-baseline gap-x-2">
+                            <span class="font-mono font-bold decipher-header" data-text="Featured Projects">Featured Projects</span>
+                            <span class="text-outline text-body-md sm:text-headline-sm font-normal">// System Spec</span>
+                        </h2>
+                        <p class="font-label-micro text-label-micro text-outline tracking-wider">ROBOTICS SIMULATIONS, EDGE AI DAEMONS &amp; NETWORK SYSTEMS</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 font-label-micro text-label-micro text-primary flex-shrink-0">
+                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    <span class="tracking-wider">CODEBASES ACTIVE</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+                <article class="bg-surface-container-lowest border border-outline-variant p-space-md flex flex-col justify-between chamfer-tr group hover:border-primary-container transition-all hud-card-reveal" style="animation-delay: 100ms;">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 font-label-micro text-label-micro text-outline border-b border-outline-variant pb-2 mb-3">
+                            <span class="text-primary font-bold">PRJ-01 // SWARM</span>
+                            <span>MARS LAB / UTRGV</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">ARGoS Path Planning &amp; Flocking</h3>
+                        <p class="text-on-surface-variant font-body-sm text-body-sm my-3">Multi-agent autonomous swarm simulation built in C++. Developed Reynolds-style flocking behavior (cohesion, alignment, separation) paired with real-time vector field obstacle avoidance for cooperative drone formations.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">C++</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">ARGOS SIM</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">SWARM ALGO</span>
+                    </div>
+                </article>
+
+                <article class="bg-surface-container-lowest border border-outline-variant p-space-md flex flex-col justify-between chamfer-tr group hover:border-secondary transition-all hud-card-reveal" style="animation-delay: 200ms;">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 font-label-micro text-label-micro text-outline border-b border-outline-variant pb-2 mb-3">
+                            <span class="text-secondary-fixed font-bold">PRJ-02 // VISION</span>
+                            <span>EDGE AI / VEHICLE ACCESS</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary-fixed transition-colors">Sentinel &amp; Arbiter: Edge LPR</h3>
+                        <p class="text-on-surface-variant font-body-sm text-body-sm my-3">Production-tested license plate recognition and access control daemon. Employs YOLOv8 fine-tuned models for LP localization, OCR text deciphering, and sub-second token dispatch over AWS IoT telemetry brokers.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">YOLOv8</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">PYTHON</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">AWS IoT</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">OPENCV</span>
+                    </div>
+                </article>
+
+                <article class="bg-surface-container-lowest border border-outline-variant p-space-md flex flex-col justify-between chamfer-tr group hover:border-tertiary transition-all hud-card-reveal" style="animation-delay: 300ms;">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 font-label-micro text-label-micro text-outline border-b border-outline-variant pb-2 mb-3">
+                            <span class="text-tertiary font-bold">PRJ-03 // DEFENSE</span>
+                            <span>NETWORK CYBERNETICS</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-tertiary transition-colors">Pi-hole Hardline Network Shield</h3>
+                        <p class="text-on-surface-variant font-body-sm text-body-sm my-3">Configured bare-metal DNS sinkhole on Raspberry Pi clusters. Implemented strict upstream DoH (DNS-over-HTTPS), custom regex telemetry blacklisting, and network traffic monitor preventing telemetry leakage.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">RASPBERRY PI</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">LINUX/SYSADMIN</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">DNSSEC</span>
+                    </div>
+                </article>
+
+                <article class="bg-surface-container-lowest border border-outline-variant p-space-md flex flex-col justify-between chamfer-tr group hover:border-primary-container transition-all hud-card-reveal" style="animation-delay: 400ms;">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 font-label-micro text-label-micro text-outline border-b border-outline-variant pb-2 mb-3">
+                            <span class="text-primary font-bold">PRJ-04 // LOGIC</span>
+                            <span>ALGORITHMIC ENGINE</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Bitboard Chess Engine</h3>
+                        <p class="text-on-surface-variant font-body-sm text-body-sm my-3">Java-based chess engine with custom bitboard state representation, alpha-beta pruning minimax evaluation, transposition tables, and move generation validation according to strict FIDE specifications.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">JAVA</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">MINIMAX</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">DATA STRUCTS</span>
+                    </div>
+                </article>
+
+                <article class="bg-surface-container-lowest border border-outline-variant p-space-md flex flex-col justify-between chamfer-tr group hover:border-secondary transition-all hud-card-reveal" style="animation-delay: 500ms;">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 font-label-micro text-label-micro text-outline border-b border-outline-variant pb-2 mb-3">
+                            <span class="text-secondary-fixed font-bold">PRJ-05 // CLI TOOL</span>
+                            <span>GOLANG UTILITY</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary-fixed transition-colors">Git Activity Telemetry CLI</h3>
+                        <p class="text-on-surface-variant font-body-sm text-body-sm my-3">Lightweight high-speed terminal dashboard written in Go for parsing Git user commits, branch merges, and release telemetry across multiple remote endpoints with zero bloated dependencies.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">GOLANG</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">REST API</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">CLI TUI</span>
+                    </div>
+                </article>
+
+                <article class="bg-surface-container-lowest border border-outline-variant p-space-md flex flex-col justify-between chamfer-tr group hover:border-tertiary transition-all hud-card-reveal" style="animation-delay: 600ms;">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 font-label-micro text-label-micro text-outline border-b border-outline-variant pb-2 mb-3">
+                            <span class="text-tertiary font-bold">PRJ-06 // HARDWARE</span>
+                            <span>SYSTEM DIAGNOSTICS</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-tertiary transition-colors">Hardware Diagnostics &amp; Custom Rig Bench</h3>
+                        <p class="text-on-surface-variant font-body-sm text-body-sm my-3">Custom hardware testing bench and assembly station configured for multi-point PC builds, component fault isolation, power rail verification, and full-spectrum OS recovery diagnostics.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">PC BUILD</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">DIAGNOSTICS</span>
+                        <span class="px-2 py-0.5 bg-surface-container text-on-surface text-[10px] font-label-micro border border-outline-variant">BENCH HW</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 4. SKILLS                                   -->
+        <!-- ========================================== -->
+        <section id="skills" class="hud-reveal-section scroll-mt-28 md:scroll-mt-20 space-y-space-md pt-space-lg">
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-outline-variant pb-space-sm gap-2 md:gap-4">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-2.5 h-6 bg-tertiary rounded-sm flex-shrink-0 amber-glow-flicker"></div>
+                    <div class="min-w-0">
+                        <h2 class="font-headline-lg text-headline-lg-mobile sm:text-headline-lg text-on-surface tracking-wide uppercase flex flex-wrap items-baseline gap-x-2">
+                            <span class="font-mono font-bold decipher-header" data-text="Technical Skills">Technical Skills</span>
+                            <span class="text-outline text-body-md sm:text-headline-sm font-normal">// Stack &amp; Arsenal</span>
+                        </h2>
+                        <p class="font-label-micro text-label-micro text-outline tracking-wider">PROGRAMMING LANGUAGES, ROBOTICS &amp; HARDWARE BENCH</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 font-label-micro text-label-micro text-tertiary flex-shrink-0">
+                    <span class="inline-block w-1.5 h-1.5 bg-tertiary rounded-full hud-flicker-alt"></span>
+                    <span class="tracking-wider">18 COMPETENCIES VERIFIED</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+                <!-- BAY 01 -->
+                <div class="bg-surface-container-lowest border border-outline-variant p-space-md chamfer-tr flex flex-col justify-between hud-card-reveal" style="animation-delay: 150ms;">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-outline-variant pb-2 mb-3">
+                            <h3 class="font-label-md text-label-md text-primary font-bold tracking-wider flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 bg-primary-container inline-block hud-flicker-sq"></span>
+                                [ 01 // LANGUAGES ]
+                            </h3>
+                            <span class="font-label-micro text-label-micro text-outline tracking-wider">CORE LEVEL</span>
+                        </div>
+                        <ul class="space-y-1.5 font-label-md text-label-md">
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-primary-container/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-primary transition-colors"><span class="text-primary-container text-label-micro font-bold">&gt;&gt;</span><span>C / C++</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">COMPILED</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-secondary-fixed/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-secondary-fixed transition-colors"><span class="text-secondary-fixed text-label-micro font-bold">&gt;&gt;</span><span>PYTHON</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">AI / SCRIPT</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-tertiary/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-tertiary transition-colors"><span class="text-tertiary text-label-micro font-bold">&gt;&gt;</span><span>JAVA</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">OOP / SYS</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-secondary-fixed/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-secondary-fixed transition-colors"><span class="text-secondary-fixed text-label-micro font-bold">&gt;&gt;</span><span>GOLANG</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">CLI / CONCUR</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-primary/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-primary transition-colors"><span class="text-primary text-label-micro font-bold">&gt;&gt;</span><span>TYPESCRIPT / JS</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">FULLSTACK</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-outline/80 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-on-surface-variant transition-colors"><span class="text-outline text-label-micro font-bold">&gt;&gt;</span><span>LUA &amp; SQL</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">EMBED / DB</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-outline/80 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-on-surface-variant transition-colors"><span class="text-outline text-label-micro font-bold">&gt;&gt;</span><span>HTML &amp; CSS</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">UI / MARKUP</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pt-3 mt-3 border-t border-outline-variant/50 flex flex-wrap justify-between items-center gap-2 text-[10px] font-label-micro text-outline">
+                        <span>ENGINE: MULTI_SYNTAX</span>
+                        <span class="text-primary">SUBSYSTEM: READY</span>
+                    </div>
+                </div>
+
+                <!-- BAY 02 -->
+                <div class="bg-surface-container-lowest border border-outline-variant p-space-md chamfer-tr flex flex-col justify-between hud-card-reveal" style="animation-delay: 300ms;">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-outline-variant pb-2 mb-3">
+                            <h3 class="font-label-md text-label-md text-secondary-fixed font-bold tracking-wider flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 bg-secondary-fixed inline-block hud-flicker-delayed"></span>
+                                [ 02 // ROBOTICS &amp; EDGE AI ]
+                            </h3>
+                            <span class="font-label-micro text-label-micro text-outline tracking-wider">NEURAL RIG</span>
+                        </div>
+                        <ul class="space-y-1.5 font-label-md text-label-md">
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-secondary-fixed/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-secondary-fixed transition-colors"><span class="text-secondary-fixed text-label-micro font-bold">&gt;&gt;</span><span>ROS2 (ROBOT OPERATING SYS)</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">SWARM NAV</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-primary-container/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-primary transition-colors"><span class="text-primary-container text-label-micro font-bold">&gt;&gt;</span><span>YOLOv8 &amp; COMPUTER VISION</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">OBJECT DET</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-secondary-fixed/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-secondary-fixed transition-colors"><span class="text-secondary-fixed text-label-micro font-bold">&gt;&gt;</span><span>NVIDIA JETSON &amp; TENSORRT</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">INFERENCE</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-tertiary/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-tertiary transition-colors"><span class="text-tertiary text-label-micro font-bold">&gt;&gt;</span><span>DOCKER &amp; CONTAINERIZATION</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">DEPLOYMENT</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-primary/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-primary transition-colors"><span class="text-primary text-label-micro font-bold">&gt;&gt;</span><span>LINUX SYSTEM KERNEL &amp; DAEMONS</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">LOW_LEVEL</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-secondary-fixed/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-secondary-fixed transition-colors"><span class="text-secondary-fixed text-label-micro font-bold">&gt;&gt;</span><span>GIT &amp; CI/CD PIPELINES</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">VERSIONING</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pt-3 mt-3 border-t border-outline-variant/50 flex flex-wrap justify-between items-center gap-2 text-[10px] font-label-micro text-outline">
+                        <span>BUS: CSI / I2C / UART</span>
+                        <span class="text-secondary-fixed">DAEMON: ONLINE</span>
+                    </div>
+                </div>
+
+                <!-- BAY 03 -->
+                <div class="md:col-span-2 lg:col-span-1 bg-surface-container-lowest border border-outline-variant p-space-md chamfer-tr flex flex-col justify-between hud-card-reveal" style="animation-delay: 450ms;">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-outline-variant pb-2 mb-3">
+                            <h3 class="font-label-md text-label-md text-tertiary font-bold tracking-wider flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 bg-tertiary inline-block hud-flicker-alt"></span>
+                                [ 03 // HARDWARE &amp; LAB ]
+                            </h3>
+                            <span class="font-label-micro text-label-micro text-outline tracking-wider">PHYSICAL BENCH</span>
+                        </div>
+                        <ul class="space-y-1.5 font-label-md text-label-md">
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-tertiary/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-tertiary transition-colors"><span class="text-tertiary text-label-micro font-bold">&gt;&gt;</span><span>HARDWARE DIAGNOSTICS &amp; TROUBLESHOOTING</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">BENCH</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-primary-container/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-primary transition-colors"><span class="text-primary-container text-label-micro font-bold">&gt;&gt;</span><span>CUSTOM PC BUILDING &amp; ASSEMBLY</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">CUSTOM RIGS</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-secondary-fixed/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-secondary-fixed transition-colors"><span class="text-secondary-fixed text-label-micro font-bold">&gt;&gt;</span><span>MOBILE &amp; TABLET REPAIR (IPHONE / IPAD)</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">MOBILE LAB</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-outline/80 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-on-surface-variant transition-colors"><span class="text-outline text-label-micro font-bold">&gt;&gt;</span><span>OS CONFIGURATION &amp; SYSTEM RECOVERY</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">SYS_DEPLOY</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-outline/80 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-on-surface-variant transition-colors"><span class="text-outline text-label-micro font-bold">&gt;&gt;</span><span>IT SUPPORT &amp; HARDWARE AUDIT</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">SYS_DEPLOY</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-3 p-2 bg-surface-container-low border border-outline-variant/40 hover:border-primary/60 hover:bg-surface-container transition-colors group">
+                                <span class="flex items-center gap-2 min-w-0 text-on-surface group-hover:text-primary transition-colors"><span class="text-primary text-label-micro font-bold">&gt;&gt;</span><span>FLUTTER &amp; REACT WEB APPS</span></span>
+                                <span class="flex-shrink-0 font-label-micro text-label-micro text-outline tracking-widest uppercase">CROSS_PLAT</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pt-3 mt-3 border-t border-outline-variant/50 flex flex-wrap justify-between items-center gap-2 text-[10px] font-label-micro text-outline">
+                        <span>INSTRUMENTS: DIAGNOSTIC RIG / DMM</span>
+                        <span class="text-tertiary">BENCH: ARMED</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 5. CONTACT                                  -->
+        <!-- ========================================== -->
+        <section id="contact" class="hud-reveal-section scroll-mt-28 md:scroll-mt-20 space-y-space-md pt-space-lg pb-space-lg">
+            <div class="hud-header-container-pulse flex flex-col md:flex-row md:items-end justify-between border-b border-outline-variant pb-space-sm gap-2 md:gap-4 px-2 -mx-2 rounded-t">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-2.5 h-6 bg-primary-container rounded-sm flex-shrink-0 hud-uplink-blink shadow-[0_0_12px_rgba(255,87,8,0.7)]"></div>
+                    <div class="min-w-0">
+                        <h2 class="font-headline-lg text-headline-lg-mobile sm:text-headline-lg text-on-surface tracking-wide uppercase flex flex-wrap items-baseline gap-x-2">
+                            <span class="font-mono font-bold decipher-header" data-text="CONTACT &amp; CONNECT">CONTACT &amp; CONNECT</span>
+                            <span class="text-outline text-body-md sm:text-headline-sm font-normal">// Transmission</span>
+                        </h2>
+                        <p class="font-label-micro text-label-micro text-outline tracking-wider">DIRECT INQUIRIES, RECRUITMENT &amp; COLLABORATIONS</p>
+                    </div>
+                </div>
+                <div class="font-label-micro text-label-micro text-secondary-fixed flex items-center gap-2 flex-shrink-0">
+                    <span class="inline-block w-2 h-2 bg-secondary-fixed rounded-full telemetry-flicker"></span>
+                    <span class="tracking-wider">INBOX READY</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md lg:gap-space-lg">
+                <div class="lg:col-span-5 bg-surface-container-lowest border border-outline-variant p-4 sm:p-space-lg flex flex-col justify-between chamfer-tr hud-card-reveal" style="animation-delay: 150ms;">
+                    <div>
+                        <div class="inline-flex items-center gap-2 border border-outline-variant/60 px-2.5 py-1 bg-surface-container text-primary font-label-micro text-label-micro mb-4 rounded">
+                            <span class="w-1.5 h-1.5 bg-primary-container rounded-full"></span>
+                            <span>OPEN TO OPPORTUNITIES</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-on-surface font-bold uppercase mb-3">Let’s Build Together</h3>
+                        <p class="text-on-surface-variant font-body-sm sm:font-body-md text-body-sm sm:text-body-md mb-6 leading-relaxed">I am actively seeking full-time and project opportunities in Systems Engineering, Robotics Software, Edge AI, and Embedded Systems. Send a message with role details or to discuss technology architectures.</p>
+                        <div class="space-y-3 font-label-md text-label-md">
+                            <a class="flex items-center justify-between gap-2 p-3 bg-surface-container border border-outline-variant/60 hover:border-secondary hover:text-secondary-fixed text-on-surface transition-colors rounded" href="https://www.linkedin.com/in/carlos-roldan-02132225a/" rel="noopener noreferrer" target="_blank">
+                                <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">badge</span>LinkedIn Profile</span>
+                                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_outward</span>
+                            </a>
+                            <a class="flex items-center justify-between gap-2 p-3 bg-surface-container border border-outline-variant/60 hover:border-primary-container hover:text-primary text-on-surface transition-colors rounded" href="https://github.com/CR3op" rel="noopener noreferrer" target="_blank">
+                                <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">terminal</span>GitHub @CR3op</span>
+                                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_outward</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-outline-variant/60 font-label-micro text-label-micro text-outline mt-6">
+                        RESPONSE TIME: &lt; 24 HOURS
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-surface-container-lowest border border-outline-variant p-4 sm:p-space-lg chamfer-br relative hud-card-reveal" style="animation-delay: 300ms;">
+                    <form id="contact-form" class="space-y-space-md">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                            <div>
+                                <label class="block font-label-micro text-label-micro text-primary uppercase tracking-widest mb-1.5" for="sender-name">// YOUR NAME</label>
+                                <input class="w-full bg-surface-container-low border border-outline-variant text-on-surface font-body-sm text-base sm:text-body-sm px-3 py-2.5 focus:border-secondary-fixed focus:ring-0 focus:outline-none transition-colors placeholder:text-outline-variant" id="sender-name" name="name" autocomplete="name" placeholder="e.g. Alex Smith" required type="text">
+                            </div>
+                            <div>
+                                <label class="block font-label-micro text-label-micro text-primary uppercase tracking-widest mb-1.5" for="sender-email">// EMAIL ADDRESS</label>
+                                <input class="w-full bg-surface-container-low border border-outline-variant text-on-surface font-body-sm text-base sm:text-body-sm px-3 py-2.5 focus:border-secondary-fixed focus:ring-0 focus:outline-none transition-colors placeholder:text-outline-variant" id="sender-email" name="email" autocomplete="email" placeholder="name@organization.com" required type="email">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block font-label-micro text-label-micro text-primary uppercase tracking-widest mb-1.5" for="transmission-type">// PURPOSE / SUBJECT</label>
+                            <select class="w-full bg-surface-container-low border border-outline-variant text-on-surface font-body-sm text-base sm:text-body-sm px-3 py-2.5 focus:border-secondary-fixed focus:ring-0 focus:outline-none" id="transmission-type" name="subject">
+                                <option value="job">Full-Time Role / Opportunity</option>
+                                <option value="contract">Consulting &amp; Projects</option>
+                                <option value="academic">Technical Inquiry / Question</option>
+                                <option value="general">General Inquiries</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-label-micro text-label-micro text-primary uppercase tracking-widest mb-1.5" for="message-payload">// YOUR MESSAGE</label>
+                            <textarea class="w-full bg-surface-container-low border border-outline-variant text-on-surface font-body-sm text-base sm:text-body-sm px-3 py-2.5 focus:border-secondary-fixed focus:ring-0 focus:outline-none transition-colors placeholder:text-outline-variant resize-y" id="message-payload" name="message" placeholder="Type your message or project details here..." required rows="5"></textarea>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between pt-2 gap-3">
+                            <div class="flex items-center gap-2 font-label-micro text-label-micro text-outline">
+                                <span class="inline-block w-1.5 h-1.5 bg-primary-container rounded-full animate-ping"></span>
+                                <span>ESTIMATED RESPONSE: &lt; 24 HOURS</span>
+                            </div>
+                            <button class="btn-tactile-primary bg-primary-container text-on-primary-container px-6 sm:px-8 py-3 font-label-md sm:font-label-lg text-label-md sm:text-label-lg tracking-wider font-bold inline-flex items-center justify-center gap-2 w-full sm:w-auto" type="submit">
+                                <span>[ SEND MESSAGE ]</span>
+                                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">send</span>
                             </button>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="projects">
-                <div class="container">
-                    <h2>Featured Projects</h2>
-                    <div class="projects-grid">
-                        <div class="project-card">
-                            <div class="project-title-wrapper">
-                              
-                                <h3>ARGos Path Planning - MARS</h3>
-                                <svg class="project-icon" width="12" height="12" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-                                </svg>
-                            </div>
-                            <p class="project-date">January – May 2024</p>
-                            <ul class="project-details">
-                                <li>Developed obstacle-avoidance and pathfinding algorithms (A*, Dijkstra) in a robotics simulation using ARGos</li>
-                                <li>Focused on efficient route planning and inter-robot communication in a virtual environment</li>
-                            </ul>
+                        <div class="hidden p-3 bg-surface-container border border-tertiary text-tertiary font-label-md text-label-md text-center" id="transmit-status" role="status" tabindex="-1">
+                            ⚠ FORM OFFLINE // Message delivery isn't live yet. Please reach me on LinkedIn or GitHub.
                         </div>
-                        <!-- Additional project cards can go here -->
-                        <div class="project-card">
-                            <div class="project-title-wrapper">
-                                <h3>Pi-hole Network Project – Raspberry Pi</h3>
-                                <svg class="project-icon" width="12" height="12" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-                                </svg>
-                            </div>
-                            <p class="project-date">February 2025</p>
-                            <ul class="project-details">
-                                <li>Deployed Pi-hole for DNS-level ad blocking and traffic analysis on a local network.</li>
-                                <li>Configured secure network services for improved privacy and performance.</li>
-                                <li>Gained practical experience in DNS filtering, traffic analysis, and local network administration.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 2rem;">
-                        <a href="projects.html" class="cta-button">See More</a>
-                    </div>
+                    </form>
                 </div>
-            </section>
-
-            <section id="contact">
-                <div class="container">
-                    <h2>Get In Touch</h2>
-                    <p>I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
-                    <a href="contact.html" class="cta-button">Say Hello</a>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="container">
-                <p>Designed & Built by Carlos Roldan</p>
             </div>
-        </footer>
+        </section>
+    </main>
 
-        <script src="script.js"></script>
-    </body>
-</html> 
+    <footer class="w-full border-t border-outline-variant px-margin-mobile md:px-space-lg py-space-md flex flex-col md:flex-row justify-between items-center gap-space-sm bg-surface-container-lowest text-on-surface">
+        <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 text-center sm:text-left">
+            <span class="font-label-md text-label-md text-primary uppercase tracking-widest font-bold">CARLOS ROLDAN</span>
+            <span class="hidden sm:inline text-outline-variant">|</span>
+            <span class="font-label-micro text-label-micro text-on-surface-variant tracking-wider">&copy; <span id="footer-year">2026</span> • Systems Engineer • Robotics • Edge AI</span>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-x-space-md gap-y-2 font-label-micro text-label-micro">
+            <a class="text-outline hover:text-primary tracking-wider uppercase transition-colors" href="#hero">About</a>
+            <a class="text-outline hover:text-primary tracking-wider uppercase transition-colors" href="#experience">Experience</a>
+            <a class="text-outline hover:text-primary tracking-wider uppercase transition-colors" href="#projects">Projects</a>
+            <a class="text-outline hover:text-primary tracking-wider uppercase transition-colors" href="#skills">Skills</a>
+            <a class="text-outline hover:text-primary tracking-wider uppercase transition-colors" href="#contact">Contact</a>
+        </div>
+    </footer>
+
+    <script src="hud.js"></script>
+</body>
+</html>
