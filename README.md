@@ -2,7 +2,6 @@
 
 A single-page personal portfolio website with a **Mecha HUD** look — a tactical, sci-fi cockpit-style interface. It's my digital hub for my experience, projects, and technical skills.
 
-Live at [www.carlos-roldan.com](https://www.carlos-roldan.com).
 
 ---
 
